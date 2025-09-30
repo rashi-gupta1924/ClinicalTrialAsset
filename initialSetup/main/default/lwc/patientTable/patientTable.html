@@ -1,0 +1,97 @@
+<template>
+    <table class="slds-table slds-table_bordered slds-table_col-bordered slds-table_cell-buffer slds-m-top_small"
+        style="border: 1px solid lightgray">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th scope="col">
+                    <div class="slds-truncate">Patient Name</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Age</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Status</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Weight</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Blood Pressure</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">BMI</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">ECG Status</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Hematologic Function</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Score</div>
+                </th>
+                <th scope="col">
+                    <div class="wrap-text">Site Agent LLM Response</div>
+                </th>
+                <th scope="col">
+                    <div class="wrap-text">CRO Agent LLM Response</div>
+                </th>
+                <th scope="col">
+                    <div class="wrap-text">PCP Agent LLM Response</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template if:true={patients}>
+                <template for:each={patients} for:item="patient">
+                    <tr key={patient.id}>
+                        <td>
+                            <div class="slds-truncate" style="font-weight:500">{patient.patientName}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{patient.patientAge}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{patient.statusEnrolled}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{patient.patientWeight}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{patient.patientBP}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{patient.patientBMI}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{patient.patientEcgStatus}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{patient.patientHepaticFunction}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{patient.score}</div>
+                        </td>
+                        <td>
+                            <lightning-formatted-rich-text value={patient.siteLLMResponse}
+                                class="wrap-text"></lightning-formatted-rich-text>
+                        </td>
+                        <td>
+                            <lightning-formatted-rich-text value={patient.croLLMResponse}
+                                class="wrap-text"></lightning-formatted-rich-text>
+                        </td>
+                        <td>
+                            <lightning-formatted-rich-text value={patient.pcpLLMResponse}
+                                class="wrap-text"></lightning-formatted-rich-text>
+                        </td>
+                    </tr>
+                </template>
+            </template>
+            <template if:false={patients}>
+                <tr>
+                    <td colspan="12" class="slds-text-align_center">No Patients Found</td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</template>

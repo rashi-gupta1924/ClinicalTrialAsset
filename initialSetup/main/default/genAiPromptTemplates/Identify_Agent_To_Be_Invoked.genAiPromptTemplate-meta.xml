@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_1</activeVersionIdentifier>
+    <developerName>Identify_Agent_To_Be_Invoked</developerName>
+    <masterLabel>Identify Agent To Be Invoked</masterLabel>
+    <templateVersions>
+        <content>From the retriever: {!$EinsteinSearch:Default_FileUDMO_SI_Retriever_1Cx_OMg63cd63b9.results}
+
+Identify the agent to be invoked based on user query: {!$Input:User_Query}
+
+
+Only give the agent name as output with no other text in output. Also in plain text
+</content>
+        <inputs>
+            <apiName>User_Query</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Query</masterLabel>
+            <referenceName>Input:User_Query</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Default_FileUDMO_SI_Retriever_1Cx_OMg63cd63b9</definition>
+            <label>Default FileUDMO_SI Retriever</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:User_Query}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Chunk&quot;]</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://Integer</definition>
+                <isRequired>false</isRequired>
+                <parameterName>resultCount</parameterName>
+                <valueExpression>5</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Default_FileUDMO_SI_Retriever_1Cx_OMg63cd63b9</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Agent Definitions:
+1. CRO Agent
+Function: Identifies eligible sites for a CRO Research Study. Also calculates patient compatibility scores and shortlists top patients for an enrolled site. 
+Example Input: For CRO-RS-0001, identify the sites that are eligible to run the clinical drug trial. 
+Example Input 2: Calculate the eligibility score for each patient of Enrolled Site ES-0001.
+
+2. Site Agent
+Function: Performs initial patient eligibility check (high-level criteria).
+Example Input: Perform initial patient-level eligibility screening for ES-0001
+
+3. PCP Agent
+Function: Performs detailed PCP-level eligibility check (granular criteria).
+Example Input: Check patient eligibility against PCP criteria for patients of Enrolled Site ES-0001
+
+Instruction:
+ Given the user query: {!$Input:User_Query}, identify the correct agent.
+Output:
+ Return only the agent name (CRO Agent, Site Agent, or PCP Agent). Do not include any additional text.
+</content>
+        <inputs>
+            <apiName>User_Query</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Query</masterLabel>
+            <referenceName>Input:User_Query</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_2</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

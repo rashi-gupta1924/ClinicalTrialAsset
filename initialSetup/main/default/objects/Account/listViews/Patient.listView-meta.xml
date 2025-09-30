@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Patient</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>ACCOUNT.PHONE1</columns>
+    <columns>ACCOUNT.LAST_UPDATE</columns>
+    <columns>Organ_Function_Status__c</columns>
+    <columns>Age__c</columns>
+    <columns>Ethnicity__c</columns>
+    <columns>PC_GENDER_IDENTITY</columns>
+    <columns>Pregnancy__c</columns>
+    <columns>Smoking_Status__c</columns>
+    <columns>Trial_Site__c</columns>
+    <columns>Weight__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>PersonAccount.Patient</value>
+    </filters>
+    <label>Patient</label>
+</ListView>

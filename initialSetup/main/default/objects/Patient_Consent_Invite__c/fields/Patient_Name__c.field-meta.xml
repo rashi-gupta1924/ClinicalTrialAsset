@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Patient_Name__c</fullName>
+    <externalId>false</externalId>
+    <formula>Enrolled_Site_Research_Candidate__r.Patient__r.FirstName + &apos; &apos; +  Enrolled_Site_Research_Candidate__r.Patient__r.LastName</formula>
+    <label>Patient Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

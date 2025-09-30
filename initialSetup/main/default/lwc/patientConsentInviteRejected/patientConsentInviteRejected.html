@@ -1,0 +1,31 @@
+<template>
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <!-- Modal Header -->
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium">
+                        Confirm Enrollment Status
+                    </h2>
+                </header>
+
+                <!-- Modal Content -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p>Do you want to update Enrollment Status as <b>{statusValue}</b>?</p>
+                </div>
+
+                <!-- Modal Footer -->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={handleNoClick}>No</button>
+                    <button class="slds-button slds-button_brand" onclick={handleYesClick}>Yes</button>
+                </footer>
+
+            </div>
+        </section>
+
+        <!-- Modal Backdrop -->
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

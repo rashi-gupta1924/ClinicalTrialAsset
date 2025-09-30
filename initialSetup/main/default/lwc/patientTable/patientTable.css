@@ -1,0 +1,9 @@
+.wrap-text {
+    white-space: normal;   
+    word-wrap: break-word; 
+    text-align: justify;
+}
+
+td {
+    vertical-align: top !important;
+}

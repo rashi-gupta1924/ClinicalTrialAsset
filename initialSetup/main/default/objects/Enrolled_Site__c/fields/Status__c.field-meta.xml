@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Identified</fullName>
+                <default>false</default>
+                <label>Identified</label>
+            </value>
+            <value>
+                <fullName>Invited for Survey</fullName>
+                <default>false</default>
+                <label>Invited for Survey</label>
+            </value>
+            <value>
+                <fullName>Shortlisted</fullName>
+                <default>false</default>
+                <label>Shortlisted</label>
+            </value>
+            <value>
+                <fullName>Recruitment Ongoing</fullName>
+                <default>false</default>
+                <label>Recruitment Ongoing</label>
+            </value>
+            <value>
+                <fullName>Recruitment Closed</fullName>
+                <default>false</default>
+                <label>Recruitment Closed</label>
+            </value>
+            <value>
+                <fullName>Trial Upcoming</fullName>
+                <default>false</default>
+                <label>Trial Upcoming</label>
+            </value>
+            <value>
+                <fullName>Trial Ongoing</fullName>
+                <default>false</default>
+                <label>Trial Ongoing</label>
+            </value>
+            <value>
+                <fullName>Trial Completed</fullName>
+                <default>false</default>
+                <label>Trial Completed</label>
+            </value>
+            <value>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+                <label>Inactive</label>
+            </value>
+            <value>
+                <fullName>Not Eligible</fullName>
+                <default>false</default>
+                <label>Not Eligible</label>
+            </value>
+            <value>
+                <fullName>In-Progress</fullName>
+                <default>false</default>
+                <label>In-Progress</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

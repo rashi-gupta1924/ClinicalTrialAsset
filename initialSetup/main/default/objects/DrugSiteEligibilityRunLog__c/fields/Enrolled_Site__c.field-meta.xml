@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enrolled_Site__c</fullName>
+    <label>Enrolled Site</label>
+    <referenceTo>Enrolled_Site__c</referenceTo>
+    <relationshipLabel>Drug Site Eligibility Run Logs</relationshipLabel>
+    <relationshipName>Drug_Site_Eligibility_Run_Logs</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

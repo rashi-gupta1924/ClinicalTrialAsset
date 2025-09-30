@@ -1,0 +1,15 @@
+.cro-grid {
+    margin-top: 1rem;
+}
+.cro-card {
+    min-height: 120px;
+}
+.hcf-list {
+    border-top: 1px solid #ddd;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+}
+.hcf-item {
+    background: #fdfdfd;
+    border-radius: 0.25rem;
+}

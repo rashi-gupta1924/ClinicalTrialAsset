@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_10</activeVersionIdentifier>
+    <developerName>Patient_Preference_Score</developerName>
+    <masterLabel>Patient Preference Score</masterLabel>
+    <templateVersions>
+        <content>You are a CRO agent. You need to score the patient&apos;s eligibility for a clinical research study.
+ 
+Use the patient’s demographics, lifestyle, medical history, and proximity to the site to evaluate them based on the following preference criteria. Assign scores out of 100 for each criterion and compute a total eligibility score ,also consider the PCP Agent LLM Response and Site Agent LLM Response from Enrolled Site Research Candidate .
+
+Pick the CRO Preference Criteria from Research study given below :
+{!$Input:ResearchStudy.CRO_Preferance_Criteria__c}
+ 
+Criteria (Score each individually):
+
+Age : {!$Input:Patient_Account.Age__c}
+Gender: {!$Input:Patient_Account.PersonGender}
+Blood Group: {!$Input:Patient_Account.Blood_Group__c}
+Weight(kg): {!$Input:Patient_Account.Weight__c}
+Height(cm): {!$Input:Patient_Account.Height__c}
+Body Mass Index(BMI): {!$Input:Patient_Account.BMI__c}
+Blood pressure: {!$Input:Patient_Account.Blood_Pressure__c}
+Heart Rate: {!$Input:Patient_Account.Heart_Rate__c}
+Respiratory rate: {!$Input:Patient_Account.Respiratory_Rate__c}
+SPO2: {!$Input:Patient_Account.SpO2__c}
+Temperature: {!$Input:Patient_Account.Temperature__c}
+Known Allergies: {!$Input:Patient_Account.Known_Allergies__c}
+Recent lab test: {!$Input:Patient_Account.Recent_Lab_Tests__c}
+Chronic Conditions: {!$Input:Patient_Account.Chronic_Conditions__c}
+Past Surgeries: {!$Input:Patient_Account.Past_Surgeries__c}
+Diagnosis Type: {!$Input:Patient_Account.Diagnosis_Type__c}
+Current Medications: {!$Input:Patient_Account.Current_Medications__c}
+Hematologic function: {!$Input:Patient_Account.Hematologic_Function__c}
+Renal Fucntion: {!$Input:Patient_Account.Renal_Function__c}
+Hepatic function: {!$Input:Patient_Account.Hepatic_Function__c}
+ECOG performance status: {!$Input:Patient_Account.ECOG_Performance_Status__c}
+DIPSS risk category: {!$Input:Patient_Account.DIPSS_Risk_Category__c}
+MFSAF score : {!$Input:Patient_Account.MFSAF_Total_Score__c}
+Spleen Volume: {!$Input:Patient_Account.Spleen_Volume__c}
+
+Enrolled Site Research Candidate :
+
+Site Agent LLM Response : {!$Input:EnrolledCandidate.Site_Agent_LLM_Response__c}
+PCP Agent LLM Response : {!$Input:EnrolledCandidate.PCP_Agent_LLM_Response__c}
+
+Your task is to do the following : 
+1. Analyse whether a patient data meet the research study&apos;s patient criteria using key eligibility factors like age, diagnosis confirmation, hematologic/renal/hepatic functions
+2. Evaluate diagnosis type against patient criteria. 
+3. Analyze other relevant factors that may present in the criteria
+4. Analyze and Calculate the Eligibility Score out of 100.
+5. Return your final decision with Eligibility score in Integer format without decimal.
+
+ 
+
+</content>
+        <inputs>
+            <apiName>ResearchStudy</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>ResearchStudy</masterLabel>
+            <referenceName>Input:ResearchStudy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient_Account</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient_Account</masterLabel>
+            <referenceName>Input:Patient_Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>EnrolledCandidate</apiName>
+            <definition>SOBJECT://Enrolled_Site_Research_Candidate__c</definition>
+            <masterLabel>EnrolledCandidate</masterLabel>
+            <referenceName>Input:EnrolledCandidate</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a CRO Agent. Your task is to evaluate a patient&apos;s eligibility for a clinical research study based on the CRO&apos;s preference criteria.
+
+Use the patient&apos;s demographic, lifestyle, and clinical data along with the responses from the Site and PCP Agents to assign individual scores (out of 100) for each criterion and calculate a final eligibility score.
+
+CRO Preference Criteria: {!$Input:ResearchStudy.CRO_Preferance_Criteria__c}
+
+Patient Data:
+
+Age: {!$Input:Patient_Account.Age__c}
+Gender: {!$Input:Patient_Account.PersonGender}
+Blood Group: {!$Input:Patient_Account.Blood_Group__c}
+Weight (kg): {!$Input:Patient_Account.Weight__c}
+Height (cm): {!$Input:Patient_Account.Height__c}
+BMI: {!$Input:Patient_Account.BMI__c}
+Blood Pressure: {!$Input:Patient_Account.Blood_Pressure__c}
+Heart Rate: {!$Input:Patient_Account.Heart_Rate__c}
+Respiratory Rate: {!$Input:Patient_Account.Respiratory_Rate__c}
+SpO2: {!$Input:Patient_Account.SpO2__c}
+Temperature: {!$Input:Patient_Account.Temperature__c}
+Known Allergies: {!$Input:Patient_Account.Known_Allergies__c}
+Recent Lab Tests: {!$Input:Patient_Account.Recent_Lab_Tests__c}
+Chronic Conditions: {!$Input:Patient_Account.Chronic_Conditions__c}
+Past Surgeries: {!$Input:Patient_Account.Past_Surgeries__c}
+Diagnosis Type: {!$Input:Patient_Account.Diagnosis_Type__c}
+Current Medications: {!$Input:Patient_Account.Current_Medications__c}
+Hematologic Function: {!$Input:Patient_Account.Hematologic_Function__c}
+Renal Function: {!$Input:Patient_Account.Renal_Function__c}
+Hepatic Function: {!$Input:Patient_Account.Hepatic_Function__c}
+ECOG Performance Status: {!$Input:Patient_Account.ECOG_Performance_Status__c}
+DIPSS Risk Category: {!$Input:Patient_Account.DIPSS_Risk_Category__c}
+MFSAF Total Score: {!$Input:Patient_Account.MFSAF_Total_Score__c}
+Spleen Volume: {!$Input:Patient_Account.Spleen_Volume__c}
+
+Enrolled Candidate Research Candidate Data:
+Site Agent LLM Response: {!$Input:EnrolledCandidate.Site_Agent_LLM_Response__c}
+PCP Agent LLM Response: {!$Input:EnrolledCandidate.PCP_Agent_LLM_Response__c}
+
+**Instructions**:
+- Focus on key CRO criteria: Age, Diagnosis Type, Hematologic/Renal/Hepatic Function, Blood Pressure, Heart/Respiratory Rate.
+- Score each field from 0 to 100 based on alignment with CRO&apos;s criteria.
+- Calculate a final average score (0–100) using your internal logic.
+- Output only the final integer score.
+
+**Output format**:
+Only return the final eligibility score (e.g., 87). No explanation or additional text.
+</content>
+        <inputs>
+            <apiName>ResearchStudy</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>ResearchStudy</masterLabel>
+            <referenceName>Input:ResearchStudy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient_Account</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient_Account</masterLabel>
+            <referenceName>Input:Patient_Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>EnrolledCandidate</apiName>
+            <definition>SOBJECT://Enrolled_Site_Research_Candidate__c</definition>
+            <masterLabel>EnrolledCandidate</masterLabel>
+            <referenceName>Input:EnrolledCandidate</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a CRO Agent. Your task is to evaluate a patient&apos;s eligibility for a clinical research study based on the CRO&apos;s preference criteria.
+
+Use the patient&apos;s demographic, lifestyle, and clinical data along with the responses from the Site and PCP Agents to assign individual scores (out of 100) for each criterion and calculate a final eligibility score.
+
+CRO Preference Criteria: {!$Input:ResearchStudy.CRO_Preferance_Criteria__c}
+
+Patient Data:
+
+Age: {!$Input:Patient_Account.Age__c}
+Gender: {!$Input:Patient_Account.PersonGender}
+Blood Group: {!$Input:Patient_Account.Blood_Group__c}
+Weight (kg): {!$Input:Patient_Account.Weight__c}
+Height (cm): {!$Input:Patient_Account.Height__c}
+BMI: {!$Input:Patient_Account.BMI__c}
+Blood Pressure: {!$Input:Patient_Account.Blood_Pressure__c}
+Heart Rate: {!$Input:Patient_Account.Heart_Rate__c}
+Respiratory Rate: {!$Input:Patient_Account.Respiratory_Rate__c}
+SpO2: {!$Input:Patient_Account.SpO2__c}
+Temperature: {!$Input:Patient_Account.Temperature__c}
+Known Allergies: {!$Input:Patient_Account.Known_Allergies__c}
+Recent Lab Tests: {!$Input:Patient_Account.Recent_Lab_Tests__c}
+Chronic Conditions: {!$Input:Patient_Account.Chronic_Conditions__c}
+Past Surgeries: {!$Input:Patient_Account.Past_Surgeries__c}
+Diagnosis Type: {!$Input:Patient_Account.Diagnosis_Type__c}
+Current Medications: {!$Input:Patient_Account.Current_Medications__c}
+Hematologic Function: {!$Input:Patient_Account.Hematologic_Function__c}
+Renal Function: {!$Input:Patient_Account.Renal_Function__c}
+Hepatic Function: {!$Input:Patient_Account.Hepatic_Function__c}
+ECOG Performance Status: {!$Input:Patient_Account.ECOG_Performance_Status__c}
+DIPSS Risk Category: {!$Input:Patient_Account.DIPSS_Risk_Category__c}
+MFSAF Total Score: {!$Input:Patient_Account.MFSAF_Total_Score__c}
+Spleen Volume: {!$Input:Patient_Account.Spleen_Volume__c}
+
+Enrolled Candidate Research Candidate Data:
+Site Agent LLM Response: {!$Input:EnrolledCandidate.Site_Agent_LLM_Response__c}
+PCP Agent LLM Response: {!$Input:EnrolledCandidate.PCP_Agent_LLM_Response__c}
+
+**Instructions**:
+- Focus on key CRO criteria: Age, Diagnosis Type, Hematologic/Renal/Hepatic Function, Blood Pressure, Heart/Respiratory Rate.
+- Score each field from 0 to 100 based on alignment with CRO&apos;s criteria.
+- Calculate a final average score (0–100) using your internal logic.
+- return the final score as output
+
+
+
+</content>
+        <inputs>
+            <apiName>ResearchStudy</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>ResearchStudy</masterLabel>
+            <referenceName>Input:ResearchStudy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient_Account</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient_Account</masterLabel>
+            <referenceName>Input:Patient_Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>EnrolledCandidate</apiName>
+            <definition>SOBJECT://Enrolled_Site_Research_Candidate__c</definition>
+            <masterLabel>EnrolledCandidate</masterLabel>
+            <referenceName>Input:EnrolledCandidate</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a CRO Agent. Your task is to evaluate a patient&apos;s eligibility for a clinical research study based on the CRO&apos;s preference criteria.
+
+Use the patient&apos;s demographic, lifestyle, and clinical data along with the responses from the Site and PCP Agents to assign individual scores (out of 100) for each criterion and calculate a final eligibility score.
+
+CRO Preference Criteria: {!$Input:ResearchStudy.CRO_Preferance_Criteria__c}
+
+Patient Data:
+
+Age: {!$Input:Patient_Account.Age__c}
+Gender: {!$Input:Patient_Account.PersonGender}
+Blood Group: {!$Input:Patient_Account.Blood_Group__c}
+Weight (kg): {!$Input:Patient_Account.Weight__c}
+Height (cm): {!$Input:Patient_Account.Height__c}
+BMI: {!$Input:Patient_Account.BMI__c}
+Blood Pressure: {!$Input:Patient_Account.Blood_Pressure__c}
+Heart Rate: {!$Input:Patient_Account.Heart_Rate__c}
+Respiratory Rate: {!$Input:Patient_Account.Respiratory_Rate__c}
+SpO2: {!$Input:Patient_Account.SpO2__c}
+Temperature: {!$Input:Patient_Account.Temperature__c}
+Known Allergies: {!$Input:Patient_Account.Known_Allergies__c}
+Recent Lab Tests: {!$Input:Patient_Account.Recent_Lab_Tests__c}
+Chronic Conditions: {!$Input:Patient_Account.Chronic_Conditions__c}
+Past Surgeries: {!$Input:Patient_Account.Past_Surgeries__c}
+Diagnosis Type: {!$Input:Patient_Account.Diagnosis_Type__c}
+Current Medications: {!$Input:Patient_Account.Current_Medications__c}
+Hematologic Function: {!$Input:Patient_Account.Hematologic_Function__c}
+Renal Function: {!$Input:Patient_Account.Renal_Function__c}
+Hepatic Function: {!$Input:Patient_Account.Hepatic_Function__c}
+ECOG Performance Status: {!$Input:Patient_Account.ECOG_Performance_Status__c}
+DIPSS Risk Category: {!$Input:Patient_Account.DIPSS_Risk_Category__c}
+MFSAF Total Score: {!$Input:Patient_Account.MFSAF_Total_Score__c}
+Spleen Volume: {!$Input:Patient_Account.Spleen_Volume__c}
+
+Enrolled Candidate Research Candidate Data:
+Site Agent LLM Response: {!$Input:EnrolledCandidate.Site_Agent_LLM_Response__c}
+PCP Agent LLM Response: {!$Input:EnrolledCandidate.PCP_Agent_LLM_Response__c}
+
+**Instructions**:
+- Focus on key CRO criteria: Age, Diagnosis Type, Hematologic/Renal/Hepatic Function, Blood Pressure, Heart/Respiratory Rate.
+- Score each field from 0 to 100 based on alignment with CRO&apos;s criteria.
+- Calculate a final average score (0–100) using your internal logic.
+- Return your final average score and reasoning in **valid JSON** format with the structure below:
+
+{
+ &quot;Response&quot;: &quot;Clearly state whether the patient is eligible or not, and explain why or why not based on a detailed comparison.&quot;,
+ &quot;Score&quot;:  &quot;final average score&quot;
+}
+
+
+
+
+</content>
+        <inputs>
+            <apiName>ResearchStudy</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>ResearchStudy</masterLabel>
+            <referenceName>Input:ResearchStudy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient_Account</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient_Account</masterLabel>
+            <referenceName>Input:Patient_Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>EnrolledCandidate</apiName>
+            <definition>SOBJECT://Enrolled_Site_Research_Candidate__c</definition>
+            <masterLabel>EnrolledCandidate</masterLabel>
+            <referenceName>Input:EnrolledCandidate</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_4</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a CRO Agent. Your task is to evaluate a patient&apos;s eligibility for a clinical research study based on the CRO&apos;s preference criteria.
+
+Use the patient&apos;s demographic, lifestyle, and clinical data along with the responses from the Site and PCP Agents to assign individual scores (out of 100) for each criterion and calculate a final eligibility score.
+
+CRO Preference Criteria: {!$Input:ResearchStudy.CRO_Preferance_Criteria__c}
+
+Patient Data:
+
+Age: {!$Input:Patient_Account.Age__c}
+Gender: {!$Input:Patient_Account.PersonGender}
+Blood Group: {!$Input:Patient_Account.Blood_Group__c}
+Weight (kg): {!$Input:Patient_Account.Weight__c}
+Height (cm): {!$Input:Patient_Account.Height__c}
+BMI: {!$Input:Patient_Account.BMI__c}
+Blood Pressure: {!$Input:Patient_Account.Blood_Pressure__c}
+Heart Rate: {!$Input:Patient_Account.Heart_Rate__c}
+Respiratory Rate: {!$Input:Patient_Account.Respiratory_Rate__c}
+SpO2: {!$Input:Patient_Account.SpO2__c}
+Temperature: {!$Input:Patient_Account.Temperature__c}
+Known Allergies: {!$Input:Patient_Account.Known_Allergies__c}
+Recent Lab Tests: {!$Input:Patient_Account.Recent_Lab_Tests__c}
+Chronic Conditions: {!$Input:Patient_Account.Chronic_Conditions__c}
+Past Surgeries: {!$Input:Patient_Account.Past_Surgeries__c}
+Diagnosis Type: {!$Input:Patient_Account.Diagnosis_Type__c}
+Current Medications: {!$Input:Patient_Account.Current_Medications__c}
+Hematologic Function: {!$Input:Patient_Account.Hematologic_Function__c}
+Renal Function: {!$Input:Patient_Account.Renal_Function__c}
+Hepatic Function: {!$Input:Patient_Account.Hepatic_Function__c}
+ECOG Performance Status: {!$Input:Patient_Account.ECOG_Performance_Status__c}
+DIPSS Risk Category: {!$Input:Patient_Account.DIPSS_Risk_Category__c}
+MFSAF Total Score: {!$Input:Patient_Account.MFSAF_Total_Score__c}
+Spleen Volume: {!$Input:Patient_Account.Spleen_Volume__c}
+
+Enrolled Candidate Research Candidate Data:
+Site Agent LLM Response: {!$Input:EnrolledCandidate.Site_Agent_LLM_Response__c}
+PCP Agent LLM Response: {!$Input:EnrolledCandidate.PCP_Agent_LLM_Response__c}
+
+**Instructions**:
+- Focus on key CRO criteria: Age, Diagnosis Type, Hematologic/Renal/Hepatic Function, Blood Pressure, Heart/Respiratory Rate.
+- Score each field from 0 to 100 based on alignment with CRO&apos;s criteria.
+- Calculate a final average score (0–100) using your internal logic.
+- Return your final average score as an integer in **valid JSON** format with the structure below:
+
+{
+ &quot;Score&quot;:  &quot;final average score&quot;
+}
+
+
+
+
+</content>
+        <inputs>
+            <apiName>ResearchStudy</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>ResearchStudy</masterLabel>
+            <referenceName>Input:ResearchStudy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient_Account</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient_Account</masterLabel>
+            <referenceName>Input:Patient_Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>EnrolledCandidate</apiName>
+            <definition>SOBJECT://Enrolled_Site_Research_Candidate__c</definition>
+            <masterLabel>EnrolledCandidate</masterLabel>
+            <referenceName>Input:EnrolledCandidate</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_5</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a CRO Agent. Your task is to evaluate a patient&apos;s eligibility for a clinical research study based on the CRO&apos;s preference criteria.
+
+Use the patient&apos;s demographic, lifestyle, and clinical data along with the responses from the Site and PCP Agents to assign individual scores (out of 100) for each criterion and calculate a final eligibility score.
+
+CRO Preference Criteria: {!$Input:ResearchStudy.CRO_Preferance_Criteria__c}
+
+Patient Data:
+
+Age: {!$Input:Patient_Account.Age__c}
+Gender: {!$Input:Patient_Account.PersonGender}
+Blood Group: {!$Input:Patient_Account.Blood_Group__c}
+Weight (kg): {!$Input:Patient_Account.Weight__c}
+Height (cm): {!$Input:Patient_Account.Height__c}
+BMI: {!$Input:Patient_Account.BMI__c}
+Blood Pressure: {!$Input:Patient_Account.Blood_Pressure__c}
+Heart Rate: {!$Input:Patient_Account.Heart_Rate__c}
+Respiratory Rate: {!$Input:Patient_Account.Respiratory_Rate__c}
+SpO2: {!$Input:Patient_Account.SpO2__c}
+Temperature: {!$Input:Patient_Account.Temperature__c}
+Known Allergies: {!$Input:Patient_Account.Known_Allergies__c}
+Recent Lab Tests: {!$Input:Patient_Account.Recent_Lab_Tests__c}
+Chronic Conditions: {!$Input:Patient_Account.Chronic_Conditions__c}
+Past Surgeries: {!$Input:Patient_Account.Past_Surgeries__c}
+Diagnosis Type: {!$Input:Patient_Account.Diagnosis_Type__c}
+Current Medications: {!$Input:Patient_Account.Current_Medications__c}
+Hematologic Function: {!$Input:Patient_Account.Hematologic_Function__c}
+Renal Function: {!$Input:Patient_Account.Renal_Function__c}
+Hepatic Function: {!$Input:Patient_Account.Hepatic_Function__c}
+ECOG Performance Status: {!$Input:Patient_Account.ECOG_Performance_Status__c}
+DIPSS Risk Category: {!$Input:Patient_Account.DIPSS_Risk_Category__c}
+MFSAF Total Score: {!$Input:Patient_Account.MFSAF_Total_Score__c}
+Spleen Volume: {!$Input:Patient_Account.Spleen_Volume__c}
+
+Enrolled Candidate Research Candidate Data:
+Site Agent LLM Response: {!$Input:EnrolledCandidate.Site_Agent_LLM_Response__c}
+PCP Agent LLM Response: {!$Input:EnrolledCandidate.PCP_Agent_LLM_Response__c}
+
+**Instructions**:
+- Focus on key CRO criteria: Age, Diagnosis Type, Hematologic/Renal/Hepatic Function, Blood Pressure, Heart/Respiratory Rate.
+- Score each field from 0 to 100 based on alignment with CRO&apos;s criteria.
+- Calculate a final average score (0–100) using your internal logic.
+- Return your final average score as an integer in **valid JSON** format with the structure below:
+
+{
+ &quot;Score&quot;:  final average score (integer value only)
+}
+
+
+
+
+</content>
+        <inputs>
+            <apiName>ResearchStudy</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>ResearchStudy</masterLabel>
+            <referenceName>Input:ResearchStudy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient_Account</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient_Account</masterLabel>
+            <referenceName>Input:Patient_Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>EnrolledCandidate</apiName>
+            <definition>SOBJECT://Enrolled_Site_Research_Candidate__c</definition>
+            <masterLabel>EnrolledCandidate</masterLabel>
+            <referenceName>Input:EnrolledCandidate</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_6</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a CRO Agent. Your task is to evaluate a patient&apos;s eligibility for a clinical research study based on the CRO&apos;s preference criteria.
+
+Use the patient&apos;s demographic, lifestyle, and clinical data along with the responses from the Site and PCP Agents to assign individual scores (out of 100) for each criterion and calculate a final eligibility score.
+
+CRO Preference Criteria: {!$Input:ResearchStudy.CRO_Preferance_Criteria__c}
+
+Patient Data:
+
+Age: {!$Input:Patient_Account.Age__c}
+Gender: {!$Input:Patient_Account.PersonGender}
+Blood Group: {!$Input:Patient_Account.Blood_Group__c}
+Weight (kg): {!$Input:Patient_Account.Weight__c}
+Height (cm): {!$Input:Patient_Account.Height__c}
+BMI: {!$Input:Patient_Account.BMI__c}
+Blood Pressure: {!$Input:Patient_Account.Blood_Pressure__c}
+Heart Rate: {!$Input:Patient_Account.Heart_Rate__c}
+Respiratory Rate: {!$Input:Patient_Account.Respiratory_Rate__c}
+SpO2: {!$Input:Patient_Account.SpO2__c}
+Temperature: {!$Input:Patient_Account.Temperature__c}
+Known Allergies: {!$Input:Patient_Account.Known_Allergies__c}
+Recent Lab Tests: {!$Input:Patient_Account.Recent_Lab_Tests__c}
+Chronic Conditions: {!$Input:Patient_Account.Chronic_Conditions__c}
+Past Surgeries: {!$Input:Patient_Account.Past_Surgeries__c}
+Diagnosis Type: {!$Input:Patient_Account.Diagnosis_Type__c}
+Current Medications: {!$Input:Patient_Account.Current_Medications__c}
+Hematologic Function: {!$Input:Patient_Account.Hematologic_Function__c}
+Renal Function: {!$Input:Patient_Account.Renal_Function__c}
+Hepatic Function: {!$Input:Patient_Account.Hepatic_Function__c}
+ECOG Performance Status: {!$Input:Patient_Account.ECOG_Performance_Status__c}
+DIPSS Risk Category: {!$Input:Patient_Account.DIPSS_Risk_Category__c}
+MFSAF Total Score: {!$Input:Patient_Account.MFSAF_Total_Score__c}
+Spleen Volume: {!$Input:Patient_Account.Spleen_Volume__c}
+
+Enrolled Site Research Candidate Data:
+Site Agent LLM Response: {!$Input:EnrolledCandidate.Site_Agent_LLM_Response__c}
+PCP Agent LLM Response: {!$Input:EnrolledCandidate.PCP_Agent_LLM_Response__c}
+
+**Instructions**:
+- Focus on key CRO criteria: Age, Diagnosis Type, Hematologic/Renal/Hepatic Function, Blood Pressure, Heart/Respiratory Rate.
+- Score each field from 0 to 100 based on alignment with CRO&apos;s criteria.
+- Calculate a final average score (0–100) using your internal logic.
+- Return your final average score as an integer in **valid JSON** format with the structure below:
+
+{
+ &quot;Score&quot;:  final average score (integer value only)
+}
+
+
+
+
+</content>
+        <inputs>
+            <apiName>ResearchStudy</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>ResearchStudy</masterLabel>
+            <referenceName>Input:ResearchStudy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient_Account</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient_Account</masterLabel>
+            <referenceName>Input:Patient_Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>EnrolledCandidate</apiName>
+            <definition>SOBJECT://Enrolled_Site_Research_Candidate__c</definition>
+            <masterLabel>EnrolledCandidate</masterLabel>
+            <referenceName>Input:EnrolledCandidate</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_7</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a CRO Agent. Your task is to evaluate a patient&apos;s eligibility for a clinical research study based on the CRO&apos;s preference criteria.
+
+Use the patient&apos;s demographic, lifestyle, and clinical data along with the responses from the Site and PCP Agents to assign individual scores (out of 100) for each criterion and calculate a final eligibility score.
+
+CRO Preference Criteria: {!$Input:ResearchStudy.CRO_Preferance_Criteria__c}
+
+Patient Data:
+
+Age: {!$Input:Patient_Account.Age__c}
+Gender: {!$Input:Patient_Account.PersonGender}
+Blood Group: {!$Input:Patient_Account.Blood_Group__c}
+Weight (kg): {!$Input:Patient_Account.Weight__c}
+Height (cm): {!$Input:Patient_Account.Height__c}
+BMI: {!$Input:Patient_Account.BMI__c}
+Blood Pressure: {!$Input:Patient_Account.Blood_Pressure__c}
+Heart Rate: {!$Input:Patient_Account.Heart_Rate__c}
+Respiratory Rate: {!$Input:Patient_Account.Respiratory_Rate__c}
+SpO2: {!$Input:Patient_Account.SpO2__c}
+Temperature: {!$Input:Patient_Account.Temperature__c}
+Known Allergies: {!$Input:Patient_Account.Known_Allergies__c}
+Recent Lab Tests: {!$Input:Patient_Account.Recent_Lab_Tests__c}
+Chronic Conditions: {!$Input:Patient_Account.Chronic_Conditions__c}
+Past Surgeries: {!$Input:Patient_Account.Past_Surgeries__c}
+Diagnosis Type: {!$Input:Patient_Account.Diagnosis_Type__c}
+Current Medications: {!$Input:Patient_Account.Current_Medications__c}
+Hematologic Function: {!$Input:Patient_Account.Hematologic_Function__c}
+Renal Function: {!$Input:Patient_Account.Renal_Function__c}
+Hepatic Function: {!$Input:Patient_Account.Hepatic_Function__c}
+ECOG Performance Status: {!$Input:Patient_Account.ECOG_Performance_Status__c}
+DIPSS Risk Category: {!$Input:Patient_Account.DIPSS_Risk_Category__c}
+MFSAF Total Score: {!$Input:Patient_Account.MFSAF_Total_Score__c}
+Spleen Volume: {!$Input:Patient_Account.Spleen_Volume__c}
+
+Enrolled Site Research Candidate Data:
+Site Agent LLM Response: {!$Input:EnrolledCandidate.Site_Agent_LLM_Response__c}
+PCP Agent LLM Response: {!$Input:EnrolledCandidate.PCP_Agent_LLM_Response__c}
+
+**Instructions**:
+- Focus on key CRO criteria: Age, Diagnosis Type, Hematologic/Renal/Hepatic Function, Blood Pressure, Heart/Respiratory Rate.
+- Score each field from 0 to 100 based on alignment with CRO&apos;s criteria.
+- Calculate a final average score (0–100) using your internal logic.
+
+
+
+Provide the reason behind scoring of each patient.
+Return your response with reason and final average score as an integer in **valid JSON** format with the structure below:
+
+{
+&quot;Response&quot;: &quot;clearly state the reason behind calculation of final average score &quot;,
+ &quot;Score&quot;: &quot;final average score (only integer value)&quot;
+}
+
+
+
+
+</content>
+        <inputs>
+            <apiName>ResearchStudy</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>ResearchStudy</masterLabel>
+            <referenceName>Input:ResearchStudy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient_Account</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient_Account</masterLabel>
+            <referenceName>Input:Patient_Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>EnrolledCandidate</apiName>
+            <definition>SOBJECT://Enrolled_Site_Research_Candidate__c</definition>
+            <masterLabel>EnrolledCandidate</masterLabel>
+            <referenceName>Input:EnrolledCandidate</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_8</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a CRO Agent. Your task is to evaluate a patient&apos;s eligibility for a clinical research study based on the CRO&apos;s preference criteria.
+
+Use the patient&apos;s demographic, lifestyle, and clinical data along with the responses from the Site and PCP Agents to assign individual scores (out of 100) for each criterion and calculate a final eligibility score.
+
+CRO Preference Criteria: {!$Input:ResearchStudy.CRO_Preferance_Criteria__c}
+
+Patient Data:
+
+Age: {!$Input:Patient_Account.Age__c}
+Gender: {!$Input:Patient_Account.PersonGender}
+Blood Group: {!$Input:Patient_Account.Blood_Group__c}
+Weight (kg): {!$Input:Patient_Account.Weight__c}
+Height (cm): {!$Input:Patient_Account.Height__c}
+BMI: {!$Input:Patient_Account.BMI__c}
+Blood Pressure: {!$Input:Patient_Account.Blood_Pressure__c}
+Heart Rate: {!$Input:Patient_Account.Heart_Rate__c}
+Respiratory Rate: {!$Input:Patient_Account.Respiratory_Rate__c}
+SpO2: {!$Input:Patient_Account.SpO2__c}
+Temperature: {!$Input:Patient_Account.Temperature__c}
+Known Allergies: {!$Input:Patient_Account.Known_Allergies__c}
+Recent Lab Tests: {!$Input:Patient_Account.Recent_Lab_Tests__c}
+Chronic Conditions: {!$Input:Patient_Account.Chronic_Conditions__c}
+Past Surgeries: {!$Input:Patient_Account.Past_Surgeries__c}
+Diagnosis : {!$Input:Patient_Account.Diagnosis__c}
+Current Medications: {!$Input:Patient_Account.Current_Medications__c}
+Hematologic Function: {!$Input:Patient_Account.Hematologic_Function__c}
+Renal Function: {!$Input:Patient_Account.Renal_Function__c}
+Hepatic Function: {!$Input:Patient_Account.Hepatic_Function__c}
+ECOG Performance Status: {!$Input:Patient_Account.ECOG_Performance_Status__c}
+DIPSS Risk Category: {!$Input:Patient_Account.DIPSS_Risk_Category__c}
+MFSAF Total Score: {!$Input:Patient_Account.MFSAF_Total_Score__c}
+Spleen Volume: {!$Input:Patient_Account.Spleen_Volume__c}
+
+Enrolled Site Research Candidate Data:
+Site Agent LLM Response: {!$Input:EnrolledCandidate.Site_Agent_LLM_Response__c}
+PCP Agent LLM Response: {!$Input:EnrolledCandidate.PCP_Agent_LLM_Response__c}
+
+**Instructions**:
+- Focus on key CRO criteria: Age, Diagnosis Type, Hematologic/Renal/Hepatic Function, Blood Pressure, Heart/Respiratory Rate.
+- Score each field from 0 to 100 based on alignment with CRO&apos;s criteria.
+- Calculate a final average score (0–100) using your internal logic.
+
+
+
+Provide the reason behind scoring of each patient.
+Return your response with reason and final average score as an integer in **valid JSON** format with the structure below:
+
+{
+&quot;Response&quot;: &quot;clearly state the reason behind calculation of final average score &quot;,
+ &quot;Score&quot;: &quot;final average score (only integer value)&quot;
+}
+
+
+
+
+</content>
+        <inputs>
+            <apiName>ResearchStudy</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>ResearchStudy</masterLabel>
+            <referenceName>Input:ResearchStudy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient_Account</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient_Account</masterLabel>
+            <referenceName>Input:Patient_Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>EnrolledCandidate</apiName>
+            <definition>SOBJECT://Enrolled_Site_Research_Candidate__c</definition>
+            <masterLabel>EnrolledCandidate</masterLabel>
+            <referenceName>Input:EnrolledCandidate</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_9</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a CRO Agent. Your task is to evaluate a patient&apos;s eligibility for a clinical research study based on the CRO&apos;s preference criteria.
+Use the patient&apos;s demographic, lifestyle, and clinical data together with the responses from the Site Agent and PCP Agent. Assign individual scores (0–100) for each criterion according to alignment with the CRO Preference Criteria. Then calculate a final average eligibility score (0–100, integer).
+--------------
+CRO Preference Criteria: {!$Input:ResearchStudy.CRO_Preferance_Criteria__c}
+-------------
+Patient Data:
+ Age: {!$Input:Patient_Account.Age__c}
+ Gender: {!$Input:Patient_Account.PersonGender}
+ Blood Group: {!$Input:Patient_Account.Blood_Group__c}
+ Weight (kg): {!$Input:Patient_Account.Weight__c}
+ Height (cm): {!$Input:Patient_Account.Height__c}
+ BMI: {!$Input:Patient_Account.BMI__c}
+ Blood Pressure: {!$Input:Patient_Account.Blood_Pressure__c}
+ Heart Rate: {!$Input:Patient_Account.Heart_Rate__c}
+ Respiratory Rate: {!$Input:Patient_Account.Respiratory_Rate__c}
+ SpO2: {!$Input:Patient_Account.SpO2__c}
+ Temperature: {!$Input:Patient_Account.Temperature__c}
+ Known Allergies: {!$Input:Patient_Account.Known_Allergies__c}
+ Recent Lab Tests: {!$Input:Patient_Account.Recent_Lab_Tests__c}
+ Chronic Conditions: {!$Input:Patient_Account.Chronic_Conditions__c}
+ Past Surgeries: {!$Input:Patient_Account.Past_Surgeries__c}
+ Diagnosis: {!$Input:Patient_Account.Diagnosis__c}
+ Current Medications: {!$Input:Patient_Account.Current_Medications__c}
+ Hematologic Function: {!$Input:Patient_Account.Hematologic_Function__c}
+ Renal Function: {!$Input:Patient_Account.Renal_Function__c}
+ Hepatic Function: {!$Input:Patient_Account.Hepatic_Function__c}
+ ECOG Performance Status: {!$Input:Patient_Account.ECOG_Performance_Status__c}
+ DIPSS Risk Category: {!$Input:Patient_Account.DIPSS_Risk_Category__c}
+ MFSAF Total Score: {!$Input:Patient_Account.MFSAF_Total_Score__c}
+ Spleen Volume: {!$Input:Patient_Account.Spleen_Volume__c}
+Enrolled Site Research Candidate Data:
+ Site Agent LLM Response: {!$Input:EnrolledCandidate.Site_Agent_LLM_Response__c}
+ PCP Agent LLM Response: {!$Input:EnrolledCandidate.PCP_Agent_LLM_Response__c}
+------------------
+Instructions:
+1. Focus primarily on key CRO criteria: Age, Diagnosis, Hematologic Function, Renal Function, Hepatic Function, Blood Pressure, Heart Rate, and Respiratory Rate.
+2. Include secondary criteria where relevant (e.g., BMI, SpO2, ECOG, DIPSS, Spleen Volume).
+3. Assign a score (0–100) for each criterion, and calculate a final average eligibility score.
+4. Present the reasoning in structured HTML with three sections:
+ - Met Criteria
+ - Unmet Criteria
+ - Conclusion
+5. Be concise, clinical, and consistent in tone and if no criteria are identified for either the Met Criteria or Unmet Criteria section, display ‘None’ under that section.
+-----------
+Output Format: 
+{
+ &quot;Response&quot;: &quot;HTML-formatted explanation with Met Criteria, Unmet Criteria, and Conclusion&quot;,
+ &quot;Score&quot;: &quot;Final eligibility score as an integer&quot;
+ }
+
+------------
+Sample Output:
+{
+ &quot;Response&quot;: &quot;&lt;p&gt;&lt;strong&gt;Met Criteria:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Age: 31 years (within preferred 30–50 range)&lt;/li&gt;&lt;li&gt;Diagnosis: Primary myelofibrosis (meets mandatory inclusion requirement)&lt;/li&gt;&lt;li&gt;Organ Function: Hematologic, renal, and hepatic functions are normal&lt;/li&gt;&lt;li&gt;DIPSS Risk Category: Intermediate-1 (acceptable)&lt;/li&gt;&lt;li&gt;ECOG Performance Status: 0 (fully active)&lt;/li&gt;&lt;li&gt;Spleen Volume: 923 cm³ (above minimum threshold of 450 cm³)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Unmet Criteria:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;BMI: 30.5 (≥30, outside preferred range)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Conclusion:&lt;/strong&gt; The patient meets all primary inclusion criteria and is suitable for trial enrollment. Elevated BMI is noted but does not affect overall eligibility.&lt;/p&gt;&quot;,
+ &quot;Score&quot;: 92
+}
+
+</content>
+        <inputs>
+            <apiName>ResearchStudy</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>ResearchStudy</masterLabel>
+            <referenceName>Input:ResearchStudy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient_Account</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient_Account</masterLabel>
+            <referenceName>Input:Patient_Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>EnrolledCandidate</apiName>
+            <definition>SOBJECT://Enrolled_Site_Research_Candidate__c</definition>
+            <masterLabel>EnrolledCandidate</masterLabel>
+            <referenceName>Input:EnrolledCandidate</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_10</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

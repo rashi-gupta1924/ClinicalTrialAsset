@@ -1,0 +1,93 @@
+<template>
+    <article class="slds-card">
+        <!-- Card Header with Toggle for Automatic/Manual Mode -->
+        <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-top_medium slds-p-horizontal_medium">
+            <h2 class="slds-text-heading_medium">Use AI Response</h2>
+            <lightning-input type="toggle" checked={isAutomatic} message-toggle-active="Automatic"
+                message-toggle-inactive="Manual" onchange={handleToggle}>
+            </lightning-input>
+        </div>
+
+        <!-- Card Body Section -->
+        <div class="slds-card__body slds-p-horizontal_medium slds-p-bottom_medium">
+            <div class="slds-grid slds-m-bottom_x-small slds-grid_align-spread slds-align-items-center"
+                style="align-items: center;">
+                <h3 class="slds-text-heading_small">Fetched Transcripts</h3>
+
+                <div class="slds-grid slds-align-items-center">
+                    <template if:true={transcripts.length}>
+                        <lightning-button variant="base" label={selectAllLabel} onclick={handleSelectAll}
+                            class="slds-text-link slds-text-link_reset">
+                        </lightning-button>
+
+                        <span class="slds-m-horizontal_x-small slds-text-color_weak"
+                            style="font-size: 1rem; line-height: 1.5;">|</span>
+                    </template>
+
+                    <template if:false={isAutomatic}>
+                        <lightning-button variant="base" label="Refresh" onclick={handleRefresh}
+                            class="slds-text-link slds-text-link_reset">
+                        </lightning-button>
+                    </template>
+                </div>
+            </div>
+
+            <template if:true={transcripts.length}>
+                <div class="slds-scrollable_y slds-box slds-p-around_small custom-scrollbox"
+                    style="max-height: 10rem; width: 100%;" tabindex="0">
+                    <template for:each={transcripts} for:item="transcript">
+                        <div key={transcript.index} class="slds-grid slds-align-items-start slds-m-vertical_xx-small">
+                            <!-- Checkbox -->
+                            <div class="slds-m-right_x-small">
+                                <lightning-input type="checkbox" data-text={transcript.transcriptText}
+                                    onchange={handleCheckboxChange} variant="label-hidden">
+                                </lightning-input>
+                            </div>
+
+                            <!-- Formatted text -->
+                            <div class="slds-grid slds-align-items-start">
+                                <p>
+                                    <b>{transcript.prefix}</b>&nbsp;{transcript.suffix}
+                                </p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="slds-grid slds-m-top_small">
+                    <lightning-button variant="brand" label="Get Response" onclick={handleGetLLMResponse}
+                        icon-name="utility:sparkles" class="slds-m-top_small slds-button_large">
+                    </lightning-button>
+                </div>
+            </template>
+            <lightning-spinner alternative-text="Loading" size="medium" if:true={isLoading}></lightning-spinner>
+            <!-- Response Output Field -->
+            <template if:true={LLM_Response}>
+                <div class="slds-box slds-m-top_medium">
+                    <div class="slds-grid slds-grid_align-spread slds-align-items-center">
+                        <h3 class="slds-text-heading_small">Generated Response</h3>
+                        <lightning-button-icon icon-name="utility:copy" alternative-text="Copy" title="Copy to clipboard"
+                            onclick={handleCopy} variant="bare">
+                        </lightning-button-icon>
+                    </div>
+            
+                    <div class="custom-response-box slds-scrollable_y slds-box slds-m-top_small">
+                        <!-- <div class="slds-scrollable_y slds-box slds-p-around_small custom-scrollbox"
+                    style="max-height: 10rem; width: 100%;" tabindex="0">
+                
+                </div> -->
+                        {LLM_Response}
+                    </div>
+                </div>
+            </template>
+            
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-m-top_medium">
+                    <strong>Error:</strong> {error}
+                </div>
+            </template>
+
+        </div>
+
+    </article>
+</template>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <formulas>
+        <name>isChangedStatus</name>
+        <dataType>Boolean</dataType>
+        <expression>ISCHANGED({!$Record.Status__c})</expression>
+    </formulas>
+    <interviewLabel>Enrolled Site Research Candidate Triggered Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Enrolled Site Research Candidate Triggered Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Enrolled_Record_for_Shortlisted_Candidate</targetReference>
+        </connector>
+        <object>Enrolled_Site_Research_Candidate__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Create_Enrolled_Record_for_Shortlisted_Candidate</name>
+        <label>Create Enrolled Record for Shortlisted Candidate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>Create_Enrolled_Record_for_Shortlisted_Candidate</flowName>
+        <inputAssignments>
+            <name>isChangedStatus</name>
+            <value>
+                <elementReference>isChangedStatus</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>record</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

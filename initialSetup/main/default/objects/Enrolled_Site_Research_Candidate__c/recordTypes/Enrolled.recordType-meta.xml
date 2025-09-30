@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enrolled</fullName>
+    <active>true</active>
+    <label>Enrolled</label>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Enrolled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enrollment Accepted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enrollment Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invite Sent for Enrollment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected After Shortlisted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shortlisted</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

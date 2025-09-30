@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>State__c</fullName>
+    <label>State</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>California</fullName>
+                <default>false</default>
+                <label>California</label>
+            </value>
+            <value>
+                <fullName>Texas</fullName>
+                <default>false</default>
+                <label>Texas</label>
+            </value>
+            <value>
+                <fullName>Florida</fullName>
+                <default>false</default>
+                <label>Florida</label>
+            </value>
+            <value>
+                <fullName>Illinois</fullName>
+                <default>false</default>
+                <label>Illinois</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

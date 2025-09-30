@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMR_EHR_Available__c</fullName>
+    <defaultValue>false</defaultValue>
+    <label>EMR/EHR Available</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

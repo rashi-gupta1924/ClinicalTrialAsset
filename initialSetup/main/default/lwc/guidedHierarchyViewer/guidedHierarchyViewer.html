@@ -1,0 +1,91 @@
+<template>
+    <template if:true={researchStudy}>
+        <!-- BREADCRUMBS FOR NAVIGATION -->
+        <div class="slds-p-horizontal_medium slds-p-bottom_small">
+            <lightning-breadcrumbs>
+                <template for:each={breadcrumbs} for:item="crumb">
+                    <lightning-breadcrumb 
+                        key={crumb.name}
+                        label={crumb.label}
+                        data-name={crumb.name}
+                        onclick={handleBreadcrumbNavigate}>
+                    </lightning-breadcrumb>
+                </template>
+            </lightning-breadcrumbs>
+        </div>
+
+
+
+        <!-- LEVEL 0: RESEARCH STUDY DETAILS (ALWAYS VISIBLE) -->
+        <div class="slds-box slds-theme_shade slds-m-horizontal_medium slds-m-bottom_medium">
+            <h1 class="slds-text-heading_large slds-m-bottom_small">{researchStudy.name}</h1>
+            <!-- Static details for demonstration purposes -->
+            <p><strong>Start Date:</strong> 2023-05-20</p>
+            <p><strong>Phase:</strong> Phase III</p>
+            <p><strong>CROs Involved:</strong> {researchStudy.croWrapperList.length}</p>
+        </div>
+
+        <!-- STEP 1: SELECT A CRO -->
+        <template if:true={isCroStep}>
+            <div class="slds-m-horizontal_medium">
+                <h2 class="slds-text-heading_medium slds-m-bottom_medium">Step 1: Select a CRO</h2>
+                <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                    <template for:each={researchStudy.croWrapperList} for:item="cro">
+                        <lightning-layout-item key={cro.croId} size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                            <div class="card" data-id={cro.croId} onclick={handleCroSelect} role="button" tabindex="0">
+                                <lightning-card title={cro.croName} icon-name="standard:groups">
+                                    <p class="slds-p-horizontal_small">Facilities: {cro.hfWrapperList.length}</p>
+                                </lightning-card>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+        </template>
+
+        <!-- STEP 2: SELECT AN HCF -->
+        <template if:true={isHcfStep}>
+            <div class="slds-m-horizontal_medium">
+                <h2 class="slds-text-heading_medium slds-m-bottom_medium">Step 2: Select a Healthcare Facility</h2>
+                <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                    <template for:each={selectedCro.hfWrapperList} for:item="hcf">
+                        <lightning-layout-item key={hcf.hfId} size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                            <div class="card" data-id={hcf.hfId} onclick={handleHcfSelect} role="button" tabindex="0">
+                                <lightning-card title={hcf.hfName} icon-name="standard:address">
+                                    <p class="slds-p-horizontal_small">Physicians: {hcf.pcpWrapperList.length}</p>
+                                </lightning-card>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+        </template>
+        
+        <!-- STEP 3: SELECT A PCP -->
+        <template if:true={isPcpStep}>
+            <div class="slds-m-horizontal_medium">
+                <h2 class="slds-text-heading_medium slds-m-bottom_medium">Step 3: Select a Physician (PCP)</h2>
+                <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                    <template for:each={selectedHcf.pcpWrapperList} for:item="pcp">
+                        <lightning-layout-item key={pcp.id} size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                            <div class="card" data-id={pcp.id} onclick={handlePcpSelect} role="button" tabindex="0">
+                                <lightning-card title={pcp.name} icon-name="standard:user">
+                                    <p class="slds-p-horizontal_small">Patients: {pcp.elCandidateWrapperList.length}</p>
+                                </lightning-card>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+        </template>
+        
+        <!-- STEP 4: VIEW PATIENTS -->
+        <template if:true={isPatientStep}>
+            <div class="slds-m-horizontal_medium">
+                <h2 class="slds-text-heading_medium slds-m-bottom_medium">Patients for {selectedPcp.name}</h2>
+                <c-patient-table patients={patientData}></c-patient-table>
+            </div>
+        </template>
+
+    </template>
+</template>

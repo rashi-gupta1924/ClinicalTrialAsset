@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_9</activeVersionIdentifier>
+    <developerName>Site_Eligiblility</developerName>
+    <masterLabel>Site Eligiblility</masterLabel>
+    <templateVersions>
+        <content>Imagine you are a CRO Agent, your task is to asses the eligibility criteria of a research Study against an particular Health Care Facility.
+
+Below is the eligibility criteria of the the Research Study:
+
+{!$Input:Research_Study.Site_Criteria__c}
+
+Below are the details of the Health Care Facility :
+
+Previous Trial Experience : {!$Input:Health_Care_Facility.Previous_Trial_Experience__c}
+
+
+</content>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__enUsLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Research_Study</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>Research Study</masterLabel>
+            <referenceName>Input:Research_Study</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Health_Care_Facility</apiName>
+            <definition>SOBJECT://HealthcareFacility</definition>
+            <masterLabel>Health Care Facility</masterLabel>
+            <referenceName>Input:Health_Care_Facility</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are acting as a CRO (Contract Research Organization) Agent responsible for determining if a healthcare facility is eligible to participate in a specific clinical research study.
+
+Your goal is to evaluate the healthcare facility&apos;s qualifications, capabilities, or limitations against the eligibility criteria defined by the research study.
+
+---
+
+Below is the eligibility criteria of the Research Study:
+{!$Input:Research_Study.Site_Criteria__c}
+
+Below are all the details of the Healthcare Facility:
+1 Availability Exceptions : {!$Input:Health_Care_Facility.AvailabilityExceptions}
+2. Drug Storage Facility Available : {!$Input:Health_Care_Facility.Drug_Storage_Facility_Available__c}
+3. EMR &amp; EHR Available : {!$Input:Health_Care_Facility.EMR_EHR_Available__c}
+4. Ethics Committee : {!$Input:Health_Care_Facility.Ethics_Committee_Present__c}
+5. Lab Facility Available : {!$Input:Health_Care_Facility.Lab_Facility_Available__c}
+6. No. of previous Trial done : {!$Input:Health_Care_Facility.Previous_Trial_Experience__c}
+7. Previous Enrolment Rate:  {!$Input:Health_Care_Facility.Previous_Enrollment_Rate__c}
+8. Speed of Enrolment: {!$Input:Health_Care_Facility.Speed_of_Enrollment__c} 
+9. Patient Pool Type: {!$Input:Health_Care_Facility.Patient_Pool_Type__c}
+---
+
+Please do the following:
+
+1. Analyse whether the healthcare facility meets the research study&apos;s eligibility criteria.
+2. Consider capabilities like available equipment, personnel, certifications, patient demographics, and other relevant factors that may be present in the facility description.
+3. Return your final decision and reasoning in **valid JSON** format with the structure below:
+
+```JSON
+{
+ &quot;Response&quot;: &quot;Clearly state whether the site is eligible or not, and explain why or why not based on a detailed comparison.&quot;,
+ &quot;Status&quot;: &quot;Eligible&quot; or &quot;Not Eligible&quot;
+}
+
+
+</content>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__enUsLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Research_Study</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>Research Study</masterLabel>
+            <referenceName>Input:Research_Study</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Health_Care_Facility</apiName>
+            <definition>SOBJECT://HealthcareFacility</definition>
+            <masterLabel>Health Care Facility</masterLabel>
+            <referenceName>Input:Health_Care_Facility</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are acting as a CRO (Contract Research Organization) Agent responsible for determining if a healthcare facility is eligible to participate in a specific clinical research study.
+
+Your goal is to evaluate the healthcare facility&apos;s qualifications, capabilities, or limitations against the eligibility criteria defined by the research study.
+
+---
+
+Below is the eligibility criteria of the Research Study:
+{!$Input:Research_Study.Site_Criteria__c}
+
+Below are all the details of the Healthcare Facility:
+1 Availability Exceptions : {!$Input:Health_Care_Facility.AvailabilityExceptions}
+2. Drug Storage Facility Available : {!$Input:Health_Care_Facility.Drug_Storage_Facility_Available__c}
+3. EMR &amp; EHR Available : {!$Input:Health_Care_Facility.EMR_EHR_Available__c}
+4. Ethics Committee : {!$Input:Health_Care_Facility.Ethics_Committee_Present__c}
+5. Lab Facility Available : {!$Input:Health_Care_Facility.Lab_Facility_Available__c}
+6. No. of previous Trial done : {!$Input:Health_Care_Facility.Previous_Trial_Experience__c}
+7. Previous Enrolment Rate:  {!$Input:Health_Care_Facility.Previous_Enrollment_Rate__c}
+8. Speed of Enrolment: {!$Input:Health_Care_Facility.Speed_of_Enrollment__c} 
+9. Patient Pool Type: {!$Input:Health_Care_Facility.Patient_Pool_Type__c}
+10. Lab Specialities : {!$RelatedList:Health_Care_Facility.Care_Specialties__r.Records}
+11. Compliances: {!$Input:Health_Care_Facility.Compliance__c}
+
+---
+
+Please do the following:
+
+1. Analyse whether the healthcare facility meets the research study&apos;s eligibility criteria.
+2. Consider capabilities like available equipment, personnel, certifications, patient demographics, and other relevant factors that may be present in the facility description.
+3. Return your final decision and reasoning in **valid JSON** format with the structure below:
+
+```JSON
+{
+ &quot;Response&quot;: &quot;Clearly state whether the site is eligible or not, and explain why or why not based on a detailed comparison.&quot;,
+ &quot;Status&quot;: &quot;Eligible&quot; or &quot;Not Eligible&quot;
+}
+
+
+</content>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__enUsLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Research_Study</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>Research Study</masterLabel>
+            <referenceName>Input:Research_Study</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Health_Care_Facility</apiName>
+            <definition>SOBJECT://HealthcareFacility</definition>
+            <masterLabel>Health Care Facility</masterLabel>
+            <referenceName>Input:Health_Care_Facility</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Health_Care_Facility.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Care_Specialties__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Health_Care_Facility.Care_Specialties__r.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are acting as a CRO (Contract Research Organization) Agent responsible for determining if a healthcare facility is eligible to participate in a specific clinical research study.
+
+Your goal is to evaluate the healthcare facility&apos;s qualifications, capabilities, Compliance or limitations against the eligibility criteria defined by the research study.
+
+---
+
+Below is the eligibility criteria of the Research Study:
+{!$Input:Research_Study.Site_Criteria__c}
+
+Below are all the details of the Healthcare Facility:
+1 Availability Exceptions : {!$Input:Health_Care_Facility.AvailabilityExceptions}
+2. Drug Storage Facility Available : {!$Input:Health_Care_Facility.Drug_Storage_Facility_Available__c}
+3. EMR &amp; EHR Available : {!$Input:Health_Care_Facility.EMR_EHR_Available__c}
+4. Ethics Committee : {!$Input:Health_Care_Facility.Ethics_Committee_Present__c}
+5. Lab Facility Available : {!$Input:Health_Care_Facility.Lab_Facility_Available__c}
+6. No. of previous Trial done : {!$Input:Health_Care_Facility.Previous_Trial_Experience__c}
+7. Previous Enrolment Rate:  {!$Input:Health_Care_Facility.Previous_Enrollment_Rate__c}
+8. Speed of Enrolment: {!$Input:Health_Care_Facility.Speed_of_Enrollment__c} 
+9. Patient Pool Type: {!$Input:Health_Care_Facility.Patient_Pool_Type__c}
+10. Lab Specialities : {!$RelatedList:Health_Care_Facility.Care_Specialties__r.Records}
+11. Compliances: {!$Input:Health_Care_Facility.Compliance__c}
+
+---
+
+Please do the following:
+
+1. Analyse whether the healthcare facility meets the research study&apos;s eligibility criteria.
+2. Consider capabilities like available equipment, personnel, certifications, patient demographics, and other relevant factors that may be present in the facility description.
+3. Return your final decision and reasoning in **valid JSON** format with the structure below:
+
+```JSON
+{
+ &quot;Response&quot;: &quot;Clearly state whether the site is eligible or not, and explain why or why not based on a detailed comparison.&quot;,
+ &quot;Status&quot;: &quot;Eligible&quot; or &quot;Not Eligible&quot;
+}
+
+
+</content>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__enUsLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Research_Study</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>Research Study</masterLabel>
+            <referenceName>Input:Research_Study</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Health_Care_Facility</apiName>
+            <definition>SOBJECT://HealthcareFacility</definition>
+            <masterLabel>Health Care Facility</masterLabel>
+            <referenceName>Input:Health_Care_Facility</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Health_Care_Facility.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Care_Specialties__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Health_Care_Facility.Care_Specialties__r.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_4</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are acting as a CRO (Contract Research Organization) Agent responsible for determining if a healthcare facility is eligible to participate in a specific clinical research study.
+
+Your goal is to evaluate the healthcare facility&apos;s qualifications, capabilities, compliance or limitations against the eligibility criteria defined by the research study.
+
+---
+
+Below is the eligibility criteria of the Research Study:
+{!$Input:Research_Study.Site_Criteria__c}
+
+Below are all the details of the Healthcare Facility:
+1 Availability Exceptions : {!$Input:Health_Care_Facility.AvailabilityExceptions}
+2. Drug Storage Facility Available : {!$Input:Health_Care_Facility.Drug_Storage_Facility_Available__c}
+3. EMR &amp; EHR Available : {!$Input:Health_Care_Facility.EMR_EHR_Available__c}
+4. Ethics Committee : {!$Input:Health_Care_Facility.Ethics_Committee_Present__c}
+5. Lab Facility Available : {!$Input:Health_Care_Facility.Lab_Facility_Available__c}
+6. No. of previous Trial done : {!$Input:Health_Care_Facility.Previous_Trial_Experience__c}
+7. Previous Enrolment Rate:  {!$Input:Health_Care_Facility.Previous_Enrollment_Rate__c}
+8. Speed of Enrolment: {!$Input:Health_Care_Facility.Speed_of_Enrollment__c} 
+9. Patient Pool Type: {!$Input:Health_Care_Facility.Patient_Pool_Type__c}
+10. Lab Specialities : {!$RelatedList:Health_Care_Facility.Care_Specialties__r.Records}
+11. Compliances: {!$Input:Health_Care_Facility.Compliance__c}
+
+---
+
+Please do the following:
+
+1. Analyse whether the healthcare facility meets the research study&apos;s eligibility criteria.
+2. Consider capabilities like available equipment, personnel, certifications, patient demographics, and other relevant factors that may be present in the facility description.
+3. Return your final decision and reasoning in **valid JSON** format with the structure below:
+
+```JSON
+{
+ &quot;Response&quot;: &quot;Clearly state whether the site is eligible or not, and explain why or why not based on a detailed comparison.&quot;,
+ &quot;Status&quot;: &quot;Eligible&quot; or &quot;Not Eligible&quot;
+}
+
+
+</content>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__enUsLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Research_Study</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>Research Study</masterLabel>
+            <referenceName>Input:Research_Study</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Health_Care_Facility</apiName>
+            <definition>SOBJECT://HealthcareFacility</definition>
+            <masterLabel>Health Care Facility</masterLabel>
+            <referenceName>Input:Health_Care_Facility</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Health_Care_Facility.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Care_Specialties__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Health_Care_Facility.Care_Specialties__r.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_5</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are acting as a CRO (Contract Research Organization) Agent responsible for determining if a healthcare facility is eligible to participate in a specific clinical research study.
+
+Your goal is to evaluate the healthcare facility&apos;s qualifications, capabilities, compliance or limitations against the eligibility criteria defined by the research study.
+
+---
+
+Below is the eligibility criteria of the Research Study:
+{!$Input:Research_Study.Site_Criteria__c}
+
+Below are all the details of the Healthcare Facility:
+1 Availability Exceptions : {!$Input:Health_Care_Facility.AvailabilityExceptions}
+2. Drug Storage Facility Available : {!$Input:Health_Care_Facility.Drug_Storage_Facility_Available__c}
+3. EMR &amp; EHR Available : {!$Input:Health_Care_Facility.EMR_EHR_Available__c}
+4. Ethics Committee : {!$Input:Health_Care_Facility.Ethics_Committee_Present__c}
+5. Lab Facility Available : {!$Input:Health_Care_Facility.Lab_Facility_Available__c}
+6. No. of previous Trial done : {!$Input:Health_Care_Facility.Previous_Trial_Experience__c}
+7. Previous Enrolment Rate:  {!$Input:Health_Care_Facility.Previous_Enrollment_Rate__c}
+8. Speed of Enrolment: {!$Input:Health_Care_Facility.Speed_of_Enrollment__c} 
+9. Patient Pool Type: {!$Input:Health_Care_Facility.Patient_Pool_Type__c}
+10. Lab Specialities : {!$RelatedList:Health_Care_Facility.Care_Specialties__r.Records}
+11. Compliances: {!$Input:Health_Care_Facility.Compliance__c}
+
+---
+
+Please do the following:
+
+1. Analyse whether the healthcare facility meets the research study&apos;s eligibility criteria.
+2. Consider capabilities like available equipment, personnel, certifications, patient demographics, and other relevant factors that may be present in the facility description.
+3. Return your final decision and reasoning in **valid JSON** format with the structure below:
+
+{
+ &quot;Response&quot;: &quot;Clearly state whether the site is eligible or not, and explain why or why not based on a detailed comparison.&quot;,
+ &quot;Status&quot;: &quot;Eligible&quot; or &quot;Not Eligible&quot;
+}
+
+
+</content>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__enUsLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Research_Study</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>Research Study</masterLabel>
+            <referenceName>Input:Research_Study</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Health_Care_Facility</apiName>
+            <definition>SOBJECT://HealthcareFacility</definition>
+            <masterLabel>Health Care Facility</masterLabel>
+            <referenceName>Input:Health_Care_Facility</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Health_Care_Facility.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Care_Specialties__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Health_Care_Facility.Care_Specialties__r.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_6</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are acting as a CRO (Contract Research Organization) Agent responsible for determining if a healthcare facility is eligible to participate in a specific clinical research study.
+
+Your goal is to evaluate the healthcare facility&apos;s qualifications, capabilities, compliance or limitations against the eligibility criteria defined by the research study.
+
+---
+
+Below is the eligibility criteria of the Research Study:
+{!$Input:Research_Study.Site_Criteria__c}
+
+Below are all the details of the Healthcare Facility:
+1 Availability Exceptions : {!$Input:Health_Care_Facility.AvailabilityExceptions}
+2. Drug Storage Facility Available : {!$Input:Health_Care_Facility.Drug_Storage_Facility_Available__c}
+3. EMR &amp; EHR Available : {!$Input:Health_Care_Facility.EMR_EHR_Available__c}
+4. Ethics Committee : {!$Input:Health_Care_Facility.Ethics_Committee_Present__c}
+5. Lab Facility Available : {!$Input:Health_Care_Facility.Lab_Facility_Available__c}
+6. No. of previous Trial done : {!$Input:Health_Care_Facility.Previous_Trial_Experience__c}
+7. Previous Enrolment Rate:  {!$Input:Health_Care_Facility.Previous_Enrollment_Rate__c}
+8. Speed of Enrolment: {!$Input:Health_Care_Facility.Speed_of_Enrollment__c} 
+9. Patient Pool Type: {!$Input:Health_Care_Facility.Patient_Pool_Type__c}
+10. Lab Specialities : {!$RelatedList:Health_Care_Facility.Care_Specialties__r.Records}
+11. Compliances: {!$Input:Health_Care_Facility.Compliance__c}
+
+---
+
+Please do the following:
+
+1. Analyse whether the healthcare facility meets the research study&apos;s eligibility criteria.
+2. Consider capabilities like available equipment, personnel, certifications, patient demographics, and other relevant factors that may be present in the facility description.
+3. Return your final decision and reasoning in **valid JSON** format with the structure below:
+
+{
+ &quot;Response&quot;: &quot;Clearly state whether the site is eligible or not, and explain why or why not based on a detailed comparison.&quot;,
+ &quot;Status&quot;: &quot;Eligible&quot; or &quot;Not Eligible&quot;
+}
+
+
+</content>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__enUsLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Research_Study</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>Research Study</masterLabel>
+            <referenceName>Input:Research_Study</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Health_Care_Facility</apiName>
+            <definition>SOBJECT://HealthcareFacility</definition>
+            <masterLabel>Health Care Facility</masterLabel>
+            <referenceName>Input:Health_Care_Facility</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Health_Care_Facility.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Care_Specialties__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Health_Care_Facility.Care_Specialties__r.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_7</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are acting as a CRO (Contract Research Organization) Agent responsible for determining if a healthcare facility is eligible to participate in a specific clinical research study.
+
+Your goal is to evaluate the healthcare facility&apos;s qualifications, capabilities, compliance or limitations against the eligibility criteria defined by the research study.
+
+---
+
+Below is the eligibility criteria of the Research Study:
+{!$Input:Research_Study.Site_Criteria__c}
+
+Below are all the details of the Healthcare Facility:
+1 Availability Exceptions : {!$Input:Health_Care_Facility.AvailabilityExceptions}
+2. Drug Storage Facility Available : {!$Input:Health_Care_Facility.Drug_Storage_Facility_Available__c}
+3. EMR &amp; EHR Available : {!$Input:Health_Care_Facility.EMR_EHR_Available__c}
+4. Ethics Committee : {!$Input:Health_Care_Facility.Ethics_Committee_Present__c}
+5. Lab Facility Available : {!$Input:Health_Care_Facility.Lab_Facility_Available__c}
+6. No. of previous Trial done : {!$Input:Health_Care_Facility.Previous_Trial_Experience__c}
+7. Previous Enrolment Rate:  {!$Input:Health_Care_Facility.Previous_Enrollment_Rate__c}
+8. Speed of Enrolment: {!$Input:Health_Care_Facility.Speed_of_Enrollment__c} 
+9. Patient Pool Type: {!$Input:Health_Care_Facility.Patient_Pool_Type__c}
+10. Lab Specialities : {!$RelatedList:Health_Care_Facility.Care_Specialties__r.Records}
+11. Compliances: {!$Input:Health_Care_Facility.Compliance__c}
+
+---
+
+Please do the following:
+
+1. Analyse whether the healthcare facility meets the research study&apos;s eligibility criteria.
+2. Consider capabilities like available equipment, personnel, certifications, patient demographics, and other relevant factors that may be present in the facility description.
+3. Return your final decision and reasoning in **valid JSON** format with the structure below:
+
+{
+ &quot;Response&quot;: &quot;Clearly state whether the site is eligible or not, and explain why or why not based on a detailed comparison.&quot;,
+ &quot;Status&quot;: &quot;Identified&quot; or &quot;Not Eligible&quot;
+}
+
+
+</content>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__enUsLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Research_Study</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>Research Study</masterLabel>
+            <referenceName>Input:Research_Study</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Health_Care_Facility</apiName>
+            <definition>SOBJECT://HealthcareFacility</definition>
+            <masterLabel>Health Care Facility</masterLabel>
+            <referenceName>Input:Health_Care_Facility</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Health_Care_Facility.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Care_Specialties__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Health_Care_Facility.Care_Specialties__r.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_8</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are acting as a CRO (Contract Research Organization) Agent responsible for determining if a healthcare facility is eligible to participate in a clinical research study.
+Your goal is to evaluate the healthcare facility&apos;s qualifications, infrastructure, compliance, prior experience, and limitations against the eligibility criteria defined by the research study.
+Eligibility Criteria for the Research Study:
+ {!$Input:Research_Study.Site_Criteria__c}
+------------------------
+Healthcare Facility Details:
+1. Availability Exceptions: {!$Input:Health_Care_Facility.AvailabilityExceptions}
+2. Drug Storage Facility Available: {!$Input:Health_Care_Facility.Drug_Storage_Facility_Available__c}
+3. EMR &amp; EHR Available: {!$Input:Health_Care_Facility.EMR_EHR_Available__c}
+4. Ethics Committee: {!$Input:Health_Care_Facility.Ethics_Committee_Present__c}
+5. Lab Facility Available: {!$Input:Health_Care_Facility.Lab_Facility_Available__c}
+6. Number of Previous Trials: {!$Input:Health_Care_Facility.Previous_Trial_Experience__c}
+7. Previous Enrollment Rate: {!$Input:Health_Care_Facility.Previous_Enrollment_Rate__c}
+8. Speed of Enrollment: {!$Input:Health_Care_Facility.Speed_of_Enrollment__c}
+9. Patient Pool Type: {!$Input:Health_Care_Facility.Patient_Pool_Type__c}
+10. Lab Specialties: {!$RelatedList:Health_Care_Facility.Care_Specialties__r.Records}
+11. Compliances: {!$Input:Health_Care_Facility.Compliance__c}
+-------------------
+Instructions:
+1. Evaluate whether the healthcare facility meets the research study&apos;s eligibility criteria.
+2. Assess both strengths (capabilities, compliance, infrastructure, prior experience) and gaps (limitations, missing capabilities, unmet requirements).
+3. Present your evaluation in structured HTML with the following sections:
+- Capabilities Demonstrated
+- Limitations Identified
+- Conclusion
+4. If a section has no items, display “None” under that section.
+5. Return the output in valid JSON format using the structure below:
+{
+ &quot;Response&quot;: &quot;HTML-formatted evaluation with Capabilities Demonstrated, Limitations Identified, and Conclusion&quot;,
+ &quot;Status&quot;: &quot;Identified&quot; or &quot;Not Eligible&quot;
+}
+
+----------------
+Example JSON Output:
+{
+ &quot;Response&quot;: &quot;&lt;p&gt;&lt;strong&gt;Capabilities Demonstrated:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;ICH-GCP compliant with IRB/IEC oversight&lt;/li&gt;&lt;li&gt;Dedicated ethics committee in place&lt;/li&gt;&lt;li&gt;Laboratory facilities with hematology and imaging (CT/MRI) capabilities&lt;/li&gt;&lt;li&gt;Drug storage facility and electronic medical records available&lt;/li&gt;&lt;li&gt;Previous trial experience: 456 trials with strong enrollment rate&lt;/li&gt;&lt;li&gt;Established oncology and hematology departments&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Limitations Identified:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;None&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Conclusion:&lt;/strong&gt; The healthcare facility meets all eligibility requirements and is qualified to participate in the research study.&lt;/p&gt;&quot;,
+ &quot;Status&quot;: &quot;Identified&quot;
+}
+
+</content>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__enUsLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Research_Study</apiName>
+            <definition>SOBJECT://Research_Study__c</definition>
+            <masterLabel>Research Study</masterLabel>
+            <referenceName>Input:Research_Study</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Health_Care_Facility</apiName>
+            <definition>SOBJECT://HealthcareFacility</definition>
+            <masterLabel>Health Care Facility</masterLabel>
+            <referenceName>Input:Health_Care_Facility</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Health_Care_Facility.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Care_Specialties__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Health_Care_Facility.Care_Specialties__r.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>l23vOS5Mrr2FhTMrYQgl6gboIITyOOkOv8zlzTD3QQs=_9</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

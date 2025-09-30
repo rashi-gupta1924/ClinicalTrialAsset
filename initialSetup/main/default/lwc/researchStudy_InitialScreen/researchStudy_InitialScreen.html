@@ -1,0 +1,82 @@
+<template>
+    <lightning-card title="Select Research Study and CROs">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="small" variant="brand"></lightning-spinner>
+        </template>
+
+        <div class="slds-p-left_medium slds-p-right_medium slds-p-bottom_medium">
+            <!-- Two-column layout -->
+            <div class="slds-grid slds-gutters slds-m-bottom_medium">
+
+                <!-- Left column: Research Study -->
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-combobox
+                        name="researchStudy"
+                        label="Research Study"
+                        value={selectedStudy}
+                        placeholder="Select Research Study"
+                        options={studyOptions}
+                        onchange={handleStudyChange}>
+                    </lightning-combobox>
+
+                    <template if:true={croList.length}>
+                        <label class="slds-form-element__label">Select CROs</label>
+                        <template for:each={croList} for:item="cro">
+                            <lightning-input 
+                                key={cro.value}
+                                type="checkbox"
+                                label={cro.label}
+                                value={cro.value}
+                                checked={cro.isSelected}
+                                onchange={handleCROSelection}>
+                            </lightning-input>
+                        </template>
+                    </template>
+
+                    <template if:true={errorMessage}>
+                        <div class="slds-text-color_error slds-m-top_small">
+                            {errorMessage}
+                        </div>
+                    </template>
+                    
+                </div>
+
+                <!-- Right column: CRO list -->
+                <div class="slds-col slds-size_1-of-2">
+                    
+                </div>
+
+            </div>
+
+            <!-- Submit button outside the grid -->
+            <lightning-button 
+                variant="brand"
+                label="Submit"
+                onclick={handleSubmit}
+                disabled={isSubmitDisabled}>
+            </lightning-button>
+
+            <lightning-button 
+                class="slds-m-left_small"
+                variant="brand-outline" 
+                label="Refresh" 
+                onclick={handleSubmit} 
+                disabled={isRefreshDisabled}>
+            </lightning-button>
+
+
+            <template if:true={showHierarchy}>
+                <c-clinical-trial-hierarchy rs-wrapper-list={rsWrapperList}></c-clinical-trial-hierarchy>
+            </template>
+
+            <template if:true={showHierarchy}>
+                <c-test-clinical-trial-hierarchy research-data={rsWrapperList}></c-test-clinical-trial-hierarchy>
+            </template>
+
+            <template if:true={showHierarchy}>
+                <c-guided-hierarchy-viewer research-data={rsWrapperList}></c-guided-hierarchy-viewer>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

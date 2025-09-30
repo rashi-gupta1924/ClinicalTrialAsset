@@ -1,0 +1,244 @@
+:host {
+  --stroke: 2px;
+  --line-color: #000;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #000;
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.content-area{ width: 95%; }  /*change from 1200px to 95%*/
+.custom-user-flow{ margin-top: 20px; position: relative; }
+.txt-16{ font-size: 13px; letter-spacing: 0.5px;}
+
+.flow-container{
+  border-right: 2px solid lightgray;
+}
+
+.flow-box{
+  width: 100%; height: 45px; background: #CDE7FC; /* RS default */
+  border: var(--stroke) solid var(--line-color);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative;
+}
+.flow-box:hover{ opacity: .85; transition: opacity .2s ease; }
+.slds-is-clickable{ cursor: pointer; }
+
+.flow-box::before{
+  content: ""; width: 26px; height: var(--stroke);
+  border-bottom: var(--stroke) solid var(--line-color);
+  position: absolute; top: 50%; left: -50px;
+}
+/* .flow-box::after{
+  content: ""; width: 22px; height: var(--stroke);
+  position: absolute; top: 50%; left: -24px;
+  background-image: repeating-linear-gradient(90deg, var(--line-color) 0 2px, transparent 2px 6px);
+  background-size: 8px var(--stroke); background-repeat: repeat-x;
+  animation: dashMove 2s linear infinite, dashPulse 3s ease-in-out infinite;
+} */
+
+/* Animation Line Removed*/
+.flow-box::after{
+  content: ""; 
+  width: 22px; 
+  height: var(--stroke);
+  position: absolute; 
+  top: 50%; 
+  left: -24px;
+  background-color: var(--line-color); /* solid line */
+}
+
+
+.arrow{ position: relative; padding: 10px; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; text-align: center; }
+
+/* Remove arrow entirely for first box (RS) */
+.custom-user-flow .slds-col:first-child .arrow::after {
+    display: none;
+}
+
+/* Default arrow position (align at box edge) */
+.arrow::after {
+    content: "";
+    position: absolute;
+    border: solid var(--line-color);
+    border-width: 0 var(--stroke) var(--stroke) 0;
+    padding: 4px;
+    transform: rotate(-45deg);
+    left: -12px; /* arrow sits just outside box border */
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+/* Column colors */
+.cro .flow-box{ 
+  background: #C4DED5 !important; 
+}
+.hf-green {
+  background: #A7E3A1 !important; /* Identified */
+  cursor: pointer;
+}
+.hf-grey {
+  background: #E0E0E0 !important; /* Not Eligible */
+  color: #777 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none; 
+}
+.pcp .flow-box {
+  background: #FFD6A5 !important;
+}
+
+.pt-green{
+  background: #6fcd72 !important;
+}
+
+.pt-orange{
+  background: #FFF3CD !important;
+}
+
+.pt-red{
+  background: #ff7576 !important;
+}
+
+.pt-mauve {
+  background: #E1BEE7 !important; /* Rejected After Shortlisted */
+}
+
+.pt-teal {
+  background: #0e6059 !important; /* Shortlisted */
+  color: #fff !important;
+}
+
+.pt-blue {
+  background: #BBDEFB !important; /* Initial Check */
+}
+
+.pt-lime {
+  background: #E6EE9C !important; /* Initial Check Cleared */
+}
+
+.pt-coral {
+  background: #FFCDD2 !important; /* Initial Check Failed */
+}
+
+.pt-accepted {
+  background: #3e7040 !important; 
+  color: #fff !important;
+}
+
+.pt-amber {
+  background: #9f3a3a !important; /* Enrollment Rejected */
+  color: #fff !important;
+}
+
+/* Stack spacing per column (no left connectors for stacked siblings) */
+.cro .flow-box:nth-child(n + 2),
+.health .flow-box:nth-child(n + 2),
+.pcp .flow-box:nth-child(n + 2),
+.patient .flow-box:nth-child(n + 2){ margin-top: 24px; }
+.cro .flow-box:nth-child(n + 2)::before,
+.health .flow-box:nth-child(n + 2)::before,
+.pcp .flow-box:nth-child(n + 2)::before,
+.patient .flow-box:nth-child(n + 2)::before{ display: none; }
+
+/* Vertical guide for stacked items (gives the “coming from left” look) */
+.cro .flow-box:nth-child(n + 2) .arrow::before,
+.health .flow-box:nth-child(n + 2) .arrow::before,
+.pcp .flow-box:nth-child(n + 2) .arrow::before,
+.patient .flow-box:nth-child(n + 2) .arrow::before{
+  content: ""; position: absolute; width: var(--stroke); height: 70px; border-left: var(--stroke) solid var(--line-color);
+  left: -24px; bottom: 19px;
+}
+
+/* RS is the first visible column — remove its left connector */
+.custom-user-flow .slds-col:first-child .flow-box::before,
+.custom-user-flow .slds-col:first-child .flow-box::after { display: none; }
+
+/* Flow animation */
+@keyframes dashMove{ 0%{ background-position: 0 0; } 100%{ background-position: 24px 0; } }
+@keyframes dashPulse{ 0%, 100%{ opacity: .3; } 50%{ opacity: 1; } }
+
+/* Respect user motion prefs */
+@media (prefers-reduced-motion: reduce){ .flow-box::after { animation: none; opacity: 1; } }
+
+
+.legend-container {
+    position: sticky;
+    top: 9rem;
+    align-self: flex-start; 
+    z-index: 10; 
+    padding-top: 3px;
+    margin-top: 7px;
+}
+
+.legend-stage {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 6px;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+}
+
+.legend-panel {
+  min-height: 100%;
+  /* background: #f3f3f3; */
+  border-left: 1px solid #ddd;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+}
+
+.legend-item.research { background: #CDE7FC; }
+.legend-item.cro      { background: #C4DED5; }
+.legend-item.hf-green { background: #A7E3A1; }
+.legend-item.hf-grey  { background: #E0E0E0; color: #555; }
+.legend-item.pcp      { background: #FFD6A5; }
+
+/* Stage-1 */
+.legend-item.pt-blue { background: #BBDEFB; }
+.legend-item.pt-lime { background: #E6EE9C; }
+.legend-item.pt-coral { background: #FFCDD2; }
+
+/* Stage-2 */
+.legend-item.pt-teal { background: #0e6059; color: #fff; }
+.legend-item.patient-rejected  { background: #ff7576; }
+
+/* Stage-3 */
+.legend-item.patient-green  { background: #6fcd72; }
+.legend-item.patient-onhold  { background: #FFF3CD; }
+.legend-item.pt-mauve { background: #E1BEE7; }
+
+/* Stage-4 */
+.legend-item.pt-accepted { background: #3e7040; color: #fff; }
+.legend-item.pt-amber { background: #9f3a3a; color: #fff; }
+
+
+.legend-title{
+  font-size: 25px;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 12px;
+  padding: 0px;
+}
+
+.tooltip {
+    background: #f4f6f9;
+    border: 1px solid #d8dde6;
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 0.75rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}

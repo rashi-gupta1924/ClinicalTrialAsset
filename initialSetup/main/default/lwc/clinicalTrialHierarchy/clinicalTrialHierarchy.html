@@ -1,0 +1,113 @@
+<template>
+  <div class="slds-grid slds-gutters">
+    <!-- Main Content Area -->
+    <div class="slds-col slds-size_3-of-4 flow-container">
+      <div class="content-area">
+        <!-- Hierarchy Layout -->
+        <div class="custom-user-flow slds-grid slds-gutters_large">
+          <!-- Research Study -->
+          <div class="slds-col slds-size_1-of-5 slds-text-align_left">
+            <template if:true={rs}>
+              <div class="flow-box txt-16 research">
+                <div class="arrow">{rs.name}</div>
+              </div>
+            </template>
+          </div>
+
+          <!-- CROs -->
+          <div class="slds-col slds-size_1-of-5 slds-text-align_left">
+            <div class="cro">
+              <template if:true={croList.length}>
+                <template for:each={croList} for:item="cro">
+                  <div key={cro.croId} class="flow-box txt-16 slds-is-clickable" data-id={cro.croId}
+                    onclick={onCROClick} title={cro.croName}>
+                    <div class="arrow">{cro.croName}</div>
+                  </div>
+                </template>
+              </template>
+            </div>
+          </div>
+
+          <!-- HCFs -->
+          <div class="slds-col slds-size_1-of-5 slds-text-align_left">
+            <div class="health" style={hcfContainerStyle}>
+              <template for:each={decoratedHFs} for:item="hf">
+                <div key={hf.hfId} class={hf.dynamicClass} data-id={hf.hfId} onclick={onHCFClick} title={hf.hfName}>
+                  <div class="arrow">{hf.hfName}</div>
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <!-- PCPs -->
+          <div class="slds-col slds-size_1-of-5 slds-text-align_left">
+            <div class="pcp" style={pcpContainerStyle}>
+              <template if:true={selectedHCF.pcpWrapperList}>
+                <template for:each={selectedHCF.pcpWrapperList} for:item="pcp">
+                  <div key={pcp.id} class="flow-box txt-16 slds-is-clickable" data-id={pcp.id} onclick={onPCPClick}
+                    title={pcp.name}>
+                    <div class="arrow">{pcp.name}</div>
+                  </div>
+                </template>
+              </template>
+            </div>
+          </div>
+
+          <!-- Patients -->
+          <div class="slds-col slds-size_1-of-5 slds-text-align_left">
+            <div class="patient" style={patientContainerStyle}>
+              <template if:true={selectedPCP.elCandidateWrapperList}>
+                <template for:each={selectedPCP.elCandidateWrapperList} for:item="pt" for:index="idx">
+                  <div key={pt.idEnrolled} class={pt.cssClass} title={pt.patientName} role="button" tabindex="0"
+                    data-index={idx} onclick={handlePatientCardClick} onkeydown={handlePatientCardKeyDown}>
+                    <div class="arrow">{pt.patientName}</div> <!--patientName-->
+                  </div> 
+                </template>
+              </template>
+            </div>
+          </div>
+          <template if:true={showDetails}>
+            <c-show-patient-details-modal patient={selectedPatient}
+              onclose={handleCloseDetails}></c-show-patient-details-modal>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend Area -->
+    <div class="slds-col slds-size_1-of-4 legend-container">
+      <div class="legend-panel slds-box slds-theme_default">
+        <h3 class="slds-text-title_bold slds-p-bottom_small legend-title">Legend</h3>
+        <div class="legend">
+          <span class="legend-item research">Research Study</span>
+          <span class="legend-item cro">CRO (Contract Research Organization)</span>
+          <span class="legend-item hf-green">Healthcare Facility – Identified</span>
+          <span class="legend-item hf-grey">Healthcare Facility – Not Eligible</span>
+          <span class="legend-item pcp">Primary Care Physician (PCP)</span>
+
+          <!-- Stage 1 -->
+          <h4 class="legend-stage">Stage 1 – Initial Checks</h4>
+          <span class="legend-item pt-blue">Patient – Initial Check</span>
+          <span class="legend-item pt-lime">Patient – Initial Check Cleared</span>
+          <span class="legend-item pt-coral">Patient – Initial Check Failed</span>
+
+          <!-- Stage 2 -->
+          <h4 class="legend-stage">Stage 2 –  PCP Eligibility Criteria Check</h4>
+          <span class="legend-item pt-teal">Patient – Shortlisted</span>
+          <span class="legend-item patient-rejected">Patient – Rejected</span>
+
+          <!-- Stage 3 -->
+          <h4 class="legend-stage">Stage 3 – CRO Preference Criteria Check</h4>
+          <span class="legend-item patient-green">Patient – Invite Sent for Enrollment</span>
+          <span class="legend-item patient-onhold">Patient – On Hold</span>
+          <span class="legend-item pt-mauve">Patient – Rejected After Shortlisted</span>
+          
+          <!-- Stage 4 -->
+          <h4 class="legend-stage">Stage 4 – Enrollment Invite Status</h4>
+          <span class="legend-item pt-accepted">Patient – Enrollment Accepted</span>
+          <span class="legend-item pt-amber">Patient – Enrollment Rejected</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

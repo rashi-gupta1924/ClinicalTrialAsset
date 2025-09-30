@@ -1,0 +1,65 @@
+<template>
+    <!-- Check if we have data to display -->
+    <template if:true={researchStudy}>
+        <!-- LEVEL 0: Research Study Details shown as a card at the top -->
+        <lightning-card icon-name="standard:case_wrap_up" variant="base" class="slds-m-around_medium">
+            <h1 slot="title">{researchStudy.name}</h1>
+
+            <!-- We can add more research study details here if needed -->
+            <div slot="footer">
+                CRO Count: {researchStudy.croWrapperList.length}
+            </div>
+
+            <!-- LEVEL 1: Tabs for each CRO -->
+            <lightning-tabset variant="scoped">
+                <template for:each={researchStudy.croWrapperList} for:item="cro">
+                    <lightning-tab label={cro.croName} value={cro.croId} key={cro.croId}>
+
+                        <!-- LEVEL 2: List of HCFs inside each CRO Tab -->
+                        <div class="slds-p-around_medium">
+                            <template for:each={cro.hfWrapperList} for:item="hcf">
+                                <div key={hcf.hfId} class="slds-box slds-m-bottom_medium">
+                                    <h3 class="slds-text-heading_small slds-m-bottom_small">{hcf.hfName}</h3>
+
+                                    <!-- LEVEL 3: Expandable Accordion for PCPs -->
+                                    <lightning-accordion allow-multiple-sections-open>
+                                        <template for:each={hcf.pcpWrapperList} for:item="pcp">
+                                            <lightning-accordion-section name={pcp.id} label={pcp.name} key={pcp.id}>
+                                                <!-- Speciality: {pcp.Medical_Specialty__c}  -->
+                                                <!-- LEVEL 4: List of Patients inside each PCP section -->
+                                                <!-- <ul>
+                                                    <template for:each={pcp.elCandidateWrapperList} for:item="patient">
+                                                        <li key={patient.id}
+                                                            class="slds-p-horizontal_medium slds-p-vertical_xx-small">
+                                                            {patient.patientName}
+                                                        </li>
+                                                    </template>
+                                                </ul> -->
+                                                <!-- LEVEL 4: Patient Table inside each PCP section -->
+
+                                                <!-- Reusable patient table -->
+                                                <c-patient-table
+                                                    patients={pcp.elCandidateWrapperList}></c-patient-table>
+
+
+                                            </lightning-accordion-section>
+                                        </template>
+                                    </lightning-accordion>
+                                </div>
+                            </template>
+                        </div>
+
+                    </lightning-tab>
+                </template>
+            </lightning-tabset>
+
+        </lightning-card>
+    </template>
+
+    <!-- Show a message if no data is provided -->
+    <template if:false={researchStudy}>
+        <lightning-card title="No Data">
+            <p class="slds-p-horizontal_small">Waiting for research study data to be provided.</p>
+        </lightning-card>
+    </template>
+</template>

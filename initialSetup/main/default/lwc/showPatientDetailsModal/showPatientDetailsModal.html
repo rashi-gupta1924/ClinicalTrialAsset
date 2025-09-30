@@ -1,0 +1,43 @@
+<template>
+	<section role="dialog" aria-modal="true" aria-labelledby="patient-modal-heading"
+		class="slds-modal slds-fade-in-open custom-modal-width">
+		<div class="slds-modal__container" style="width: fit-content !important;max-width: 50% !important;">
+			<header class="slds-modal__header">
+				<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+					onclick={handleClose}>
+					<lightning-icon icon-name="utility:close" alternative-text="Close" size="small">
+					</lightning-icon>
+				</button>
+				<h2 id="patient-modal-heading" class="slds-text-heading_medium slds-hyphenate">
+					{headerTitle}
+				</h2>
+			</header>
+
+			<div class="slds-modal__content slds-p-around_medium" style="max-height:70vh;">
+				<dl class="slds-list_horizontal slds-wrap">
+					<template for:each={detailRows} for:item="row">
+						<div key={row.label}
+							class="slds-item slds-size_1-of-2 slds-p-vertical_x-small slds-p-right_small">
+							<dt class="slds-text-title_bold" style="border-bottom: 1px solid lightgray;">{row.label}
+							</dt>
+							<dd class="slds-wrap" style="text-align: justify;">
+								<template if:true={row.isName}>
+									<lightning-formatted-url value={row.recordUrl} label={row.value} target="_blank">
+									</lightning-formatted-url>
+								</template>
+								<template if:false={row.isName}>
+									<lightning-formatted-rich-text value={row.value}></lightning-formatted-rich-text>
+								</template>
+							</dd>
+						</div>
+					</template>
+				</dl>
+			</div>
+
+			<footer class="slds-modal__footer slds-grid slds-grid_align-end">
+				<lightning-button label="Close" onclick={handleClose}></lightning-button>
+			</footer>
+		</div>
+	</section>
+	<div class="slds-backdrop slds-backdrop_open"></div>
+</template>

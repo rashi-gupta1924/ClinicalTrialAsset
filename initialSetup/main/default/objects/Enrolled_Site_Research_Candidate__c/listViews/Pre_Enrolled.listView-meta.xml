@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pre_Enrolled</fullName>
+    <columns>NAME</columns>
+    <columns>Patient__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Enrolled_Site_Research_Candidate__c.Pre_Enrolled</value>
+    </filters>
+    <label>Pre-Enrolled</label>
+</ListView>

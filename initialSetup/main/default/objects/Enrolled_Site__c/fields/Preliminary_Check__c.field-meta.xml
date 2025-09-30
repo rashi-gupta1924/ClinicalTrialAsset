@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Preliminary_Check__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>if checked - site agent will call for initial round checking, unchecked - means calling to pcp agent for second round checking</description>
+    <label>Preliminary Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

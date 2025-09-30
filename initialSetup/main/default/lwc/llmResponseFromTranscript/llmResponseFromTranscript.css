@@ -1,0 +1,22 @@
+.custom-scrollbox {
+    max-height: 12rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #dcdcdc;
+    background: #f8f9fb;
+}
+
+.custom-response-box {
+    max-height: 12rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #dcdcdc;
+    background: #f8f9fb;
+    padding: 0.5rem;
+}
+
+.custom-textarea {
+    background: transparent;
+    border: none;
+    resize: none;
+}

@@ -1,0 +1,8 @@
+.lightning-studio{
+	color : blue;
+}
+
+.custom-modal-width {
+  width: fit-content !important;
+  align-items: center !important;
+}

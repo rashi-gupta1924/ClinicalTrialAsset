@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Speed_of_Enrollment__c</fullName>
+    <label>Speed of Enrollment</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fast</fullName>
+                <default>false</default>
+                <label>Fast</label>
+            </value>
+            <value>
+                <fullName>Moderate</fullName>
+                <default>false</default>
+                <label>Moderate</label>
+            </value>
+            <value>
+                <fullName>Slow</fullName>
+                <default>false</default>
+                <label>Slow</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
