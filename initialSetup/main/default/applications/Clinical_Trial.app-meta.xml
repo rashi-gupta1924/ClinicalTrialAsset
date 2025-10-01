@@ -45,17 +45,16 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
+    <tabs>Process_Research_Study</tabs>
+    <tabs>Research_Study__c</tabs>
+    <tabs>CRO_Research_Study__c</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-HealthcareFacility</tabs>
-    <tabs>Enrolled_Site__c</tabs>
-    <tabs>CRO_Research_Study__c</tabs>
     <tabs>Patient_Site__c</tabs>
+    <tabs>Enrolled_Site__c</tabs>
     <tabs>Enrolled_Site_Research_Candidate__c</tabs>
-    <tabs>Patient_Eligibility_Run_Log__c</tabs>
-    <tabs>Process_Research_Study</tabs>
-    <tabs>Info_Authorization_Request__c</tabs>
     <tabs>Patient_Consent_Invite__c</tabs>
-    <tabs>Lead_Analysis_Log__c</tabs>
+    <tabs>Patient_Eligibility_Run_Log__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Clinical_Trial_UtilityBar</utilityBar>
 </CustomApplication>
