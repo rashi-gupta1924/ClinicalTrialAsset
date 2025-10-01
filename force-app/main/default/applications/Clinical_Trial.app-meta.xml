@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#C13C62</headerColor>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>POC App for Clinical trial and eligibility match</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Clinical Trial</label>
+    <navType>Standard</navType>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Patient_Consent_Invite_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Patient_Consent_Invite__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>External Apps Login User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Patient_Consent_Invite_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Patient_Consent_Invite__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>External Apps Login User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Patient_Consent_Invite_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Patient_Consent_Invite__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Patient_Consent_Invite_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Patient_Consent_Invite__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <tabs>Process_Research_Study</tabs>
+    <tabs>Research_Study__c</tabs>
+    <tabs>CRO_Research_Study__c</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-HealthcareFacility</tabs>
+    <tabs>Patient_Site__c</tabs>
+    <tabs>Enrolled_Site__c</tabs>
+    <tabs>Enrolled_Site_Research_Candidate__c</tabs>
+    <tabs>Patient_Consent_Invite__c</tabs>
+    <tabs>Patient_Eligibility_Run_Log__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Clinical_Trial_UtilityBar</utilityBar>
+</CustomApplication>
