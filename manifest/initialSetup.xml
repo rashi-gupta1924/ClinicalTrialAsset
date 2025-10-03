@@ -224,6 +224,7 @@
     </types>
     <types>
         <members>Community_Patient_Consent_Access</members>
+        <members>Drug_Trial_Asset_Read_Write</members>
         <name>PermissionSet</name>
     </types>
     <types>
