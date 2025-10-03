@@ -3,6 +3,12 @@
     {
       "path": "force-app",
       "default": true
+    },
+    {
+      "path": "initialSetup"
+    }
+    {
+      "path": "pcpAndSiteAgent"
     }
   ],
   "name": "ClinicalTrialAsset",

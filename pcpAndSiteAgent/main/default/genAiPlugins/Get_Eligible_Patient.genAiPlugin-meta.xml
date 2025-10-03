@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>This topic is used to perform all tasks related to a Enrolled Site like identifying eligible Patients.</description>
+    <developerName>Get_Eligible_Patient</developerName>
+    <genAiFunctions>
+        <functionName>Publish_Patient_Eligibility_Event</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>When receiving a user request to check an Enrolled Site, always format the enrolledSiteName as ES-xxxx.
+
+For example:
+If the user says &quot;Check Enrolled Site 0001&quot;, pass the value as:
+enrolledSiteName = &quot;ES-0001&quot;
+
+Maintain this format strictly to ensure accurate lookup and event publishing.</description>
+        <developerName>instruction_0_1754890678775</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0_1754890678775</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Get Eligible Patient</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to identify eligible patient for an enrolled site and give information about the status of the enrolled site research candidate.</scope>
+</GenAiPlugin>
