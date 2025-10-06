@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types> <!-- Agent Actions -->
+        <members>Publish_Patient_Eligibility_Event</members>
+        <name>GenAiFunction</name>
+    </types>        
+    <types> <!-- Topics -->
+        <members>Find_Eligible_Patients</members>
+        <name>GenAiPlugin</name>
+    </types>          
+    <types> <!-- Agent Instructions -->
+        <members>Site_Employee_Agent</members>
+        <name>GenAiPlannerBundle</name>
+    </types>  
+    <types> <!-- Agents -->
+        <members>Site_Employee_Agent</members>
+        <name>Bot</name>
+    </types>                
+    <types> <!-- Agent Version -->
+        <members>Site_Employee_Agent.v1</members>
+        <name>BotVersion</name>
+    </types>
     <version>64.0</version>
 </Package>
