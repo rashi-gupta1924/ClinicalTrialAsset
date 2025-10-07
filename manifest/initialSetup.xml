@@ -262,9 +262,7 @@
         <members>Update_Enrolled_Candidate_Status</members>
         <members>Enrolled_Site_Research_Candidates_Patient_Details_Table</members>
         <members>Enrolled_Site_Research_Candidate_Triggered_Flow</members>
-        <members>Send_Invite_for_Patient_Enrollment_Flow</members>
         <members>Create_Enrolled_Record_for_Shortlisted_Candidate</members>
-        <members>Trigger_CRO_Resarch_Event</members>
         <members>Get_Research_Study</members>
         <name>Flow</name>
     </types>
