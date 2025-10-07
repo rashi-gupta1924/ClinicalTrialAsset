@@ -1,0 +1,14 @@
+{
+  "required" : [ "enrolledSiteName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "enrolledSiteName" : {
+      "title" : "enrolledSiteName",
+      "description" : "Provide the name of the Enrolled Site.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

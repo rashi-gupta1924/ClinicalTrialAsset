@@ -1,0 +1,14 @@
+{
+  "required" : [ "User_Query_Flow" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "User_Query_Flow" : {
+      "title" : "User_Query_Flow",
+      "description" : "The input is the request from the user, such as a question or command related to processing a research study, identifying eligible patients, performing a PCP check, or retrieving patient compatibility scores.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

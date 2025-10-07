@@ -268,5 +268,11 @@
         <members>Get_Research_Study</members>
         <name>Flow</name>
     </types>
+    <types>
+        <name>PlatformEventSubscriberConfig</name>
+        <members>CROResearchEventTriggerConfig</members>
+        <members>PatientEligibilityEventTriggerConfig</members>
+        <members>PreferenceScoreTriggerConfig</members>
+    </types>
     <version>64.0</version>
 </Package>

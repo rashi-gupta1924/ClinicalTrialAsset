@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <aiPluginUtterances>
+        <developerName>utterance_0_1759733287813</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>utterance_0_1759733287813</masterLabel>
+        <utterance>Get Eligible Patients for Enrolled Site 0001</utterance>
+    </aiPluginUtterances>
+    <canEscalate>false</canEscalate>
+    <description>Use this topic when the user’s request involves processing a research study, identifying eligible patients, performing a PCP eligibility check, or retrieving patient compatibility scores. The goal is to determine the correct agent for the request and then invoke that agent.</description>
+    <developerName>Invoke_Agent_Orchestrator_Flow</developerName>
+    <genAiFunctions>
+        <functionName>Agent_Orchestrator_Flow</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>When the user asks about processing a research study, identifying eligible patients for an enrolled site, performing a PCP check, or getting patient compatibility scores, first use Answer Questions with Knowledge to determine which agent is appropriate for the request by consulting the attached Data Library. Then invoke the identified agent.</description>
+        <developerName>instruction_0_1759733287808</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0_1759733287808</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Invoke Agent Orchestrator Flow</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to interpret the user’s request, determine which agent is best suited to handle it by consulting the attached Data Library, and then invoke that agent to perform the required action.</scope>
+</GenAiPlugin>

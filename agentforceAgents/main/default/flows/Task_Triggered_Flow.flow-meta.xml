@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Invoke_Agentforce_Employee_Agent</name>
+        <label>Invoke Agentforce Employee Agent</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Agentforce_Employee_Agent</actionName>
+        <actionType>generateAiAgentResponse</actionType>
+        <dataTypeMappings>
+            <apexClass>AgentInvAction__AIAgentCompositeDefault</apexClass>
+            <typeName>U__agentResponseApex</typeName>
+        </dataTypeMappings>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>userMessage</name>
+            <value>
+                <stringValue>{!inputPrompt}</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>Agentforce_Employee_Agent</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionString>1.1.0</versionString>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <formulas>
+        <name>inputPrompt</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.RecordType.DeveloperName},&quot;CRO_Agent_Task&quot;, &quot;Calculate the eligibility score for each patient of Enrolled Site &quot; &amp; {!Get_Enrolled_Site.Name},
+  &quot;Site_Agent_Task&quot;, &quot;Perform initial patient-level eligibility screening for &quot; &amp; {!Get_Enrolled_Site.Name},
+  &quot;PCP_Agent_Task&quot;, &quot;Check patient eligibility against PCP criteria for patients of Enrolled Site &quot; &amp; {!Get_Enrolled_Site.Name},
+  &quot;No match&quot;
+)</expression>
+    </formulas>
+    <interviewLabel>Task Triggered Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Task Triggered Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Enrolled_Site</name>
+        <label>Get Enrolled Site</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Invoke_Agentforce_Employee_Agent</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Enrolled_Site__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>1 AND (2 OR 3 OR 4)</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Open</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Subject</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Identify Potential Patients</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Subject</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Identify Shortlisted Patients</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Subject</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Identify Enrolled Patients</stringValue>
+            </value>
+        </filters>
+        <object>Task</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <name>Invoke_Agent_on_Task_Creation_Path</name>
+            <connector>
+                <targetReference>Get_Enrolled_Site</targetReference>
+            </connector>
+            <label>Invoke Agent on Task Creation Path</label>
+            <offsetNumber>1</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

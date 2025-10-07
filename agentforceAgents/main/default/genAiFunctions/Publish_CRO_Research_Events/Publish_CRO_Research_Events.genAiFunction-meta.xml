@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Publishes Platform Event for given CRO and Research Study</description>
+    <invocationTarget>Agent_CRO_ResearchStudyPublisher</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <masterLabel>Publish CRO Research Events</masterLabel>
+</GenAiFunction>

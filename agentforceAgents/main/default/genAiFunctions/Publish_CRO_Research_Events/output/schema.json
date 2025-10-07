@@ -1,0 +1,15 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "responseJson" : {
+      "title" : "responseJson",
+      "description" : "The output is a JSON-formatted string containing the result of the platform event publishing process. It may include fields such as message (success or error description), researchStudyId (the matched record ID), and researchStudyName (the input value). In case of errors, it may also contain an error field with details of the failure. Use this output to confirm success or handle exceptions.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

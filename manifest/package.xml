@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types> <!-- Agent Actions -->
+    <!--types> 
         <members>Publish_Patient_Eligibility_Event</members>
         <members>Publish_PCP_Patient_Eligibility_Event</members>
         <members>Publish_CRO_Research_Events</members>
-        <members>Publish_Patient_Score_Eligibility_Event<members>
+        <members>Publish_Patient_Score_Eligibility_Event</members>
         <members>Agent_Orchestrator_Flow</members>
         <name>GenAiFunction</name>
     </types>        
-    <types> <!-- Topics -->
+    <types>
         <members>Find_Eligible_Patients</members>
         <members>Check_PCP_Patient_Eligibility</members>
         <members>Process_Research_Study</members>
         <members>Invoke_Agent_Orchestrator_Flow</members>
         <name>GenAiPlugin</name>
     </types>          
-    <types> <!-- Agent Instructions -->
+    <types>
         <members>Site_Employee_Agent</members>
         <members>PCP_Employee_Agent</members>
         <members>CRO_Employee_Agent</members>
         <members>Agentforce_Employee_Agent</members>
         <name>GenAiPlannerBundle</name>
     </types>  
-    <types> <!-- Agents -->
+    <types>
         <members>Site_Employee_Agent</members>
         <members>PCP_Employee_Agent</members>
         <members>CRO_Employee_Agent</members>
         <members>Agentforce_Employee_Agent</members>
         <name>Bot</name>
     </types>                
-    <types> <!-- Agent Version -->
+    <types> 
         <members>Site_Employee_Agent.v1</members>
         <members>PCP_Employee_Agent.v1</members>
         <members>CRO_Employee_Agent.v1</members>
@@ -40,6 +40,12 @@
         <members>Agent_Orchestrator_Flow</members>
         <members>Task_Triggered_Flow</members>
         <name>Flow</name>
+    </types-->
+    <types>
+        <name>PlatformEventSubscriberConfig</name>
+        <members>CROResearchEventTriggerConfig</members>
+        <members>PatientEligibilityEventTriggerConfig</members>
+        <members>PreferenceScoreTriggerConfig</members>
     </types>
     <version>64.0</version>
 </Package>

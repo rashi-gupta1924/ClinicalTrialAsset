@@ -1,0 +1,21 @@
+{
+  "required" : [ "croName", "researchStudyName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "croName" : {
+      "title" : "croName",
+      "description" : "Provide the name of the CRO. This is a text field retrieved from the end-user’s conversation. The value must exactly match the Name field on the Account object in Salesforce to ensure a successful lookup.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "researchStudyName" : {
+      "title" : "researchStudyName",
+      "description" : "Provide the name of the research study. This is a text field retrieved from the end-user’s conversation. The value must exactly match the Name field on the Research_Study__c object in Salesforce to ensure a successful lookup.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

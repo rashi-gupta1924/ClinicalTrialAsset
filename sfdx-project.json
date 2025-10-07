@@ -6,9 +6,9 @@
     },
     {
       "path": "initialSetup"
-    }
+    },
     {
-      "path": "pcpAndSiteAgent"
+      "path": "agentforceAgents"
     }
   ],
   "name": "ClinicalTrialAsset",

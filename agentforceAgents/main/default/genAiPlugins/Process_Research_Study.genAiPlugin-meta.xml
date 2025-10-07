@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>This topic is used to perform all tasks related to a research study like identifying eligible sites</description>
+    <developerName>Process_Research_Study</developerName>
+    <genAiFunctions>
+        <functionName>Publish_CRO_Research_Events</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>Publish_Patient_Score_Eligibility_Event</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>When receiving a user request to Get Patient scoring for an enrolled site, always format the enrolledSiteName as ES-xxxx
+And Invoke &quot;Publish Patient Score Eligibility Event&quot; agent action.
+For example:
+If the user says &quot;Get Patient scoring for enrolled site 0001&quot;, pass the value as:
+enrolledSiteName = &quot;ES-0001&quot;
+
+Maintain this format strictly to ensure accurate lookup and event publishing.</description>
+        <developerName>instruction_0_1759724179738</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0_1759724179738</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>When user asks to &quot;Get Patient scoring for an enrolled site&quot; invoke &quot;Publish Patient Score Eligibility Event&quot; agent action with the right format of enrolledSiteName.
+
+For other queries related to enrolled site, invoke &quot;Publish CRO Research Event&quot; with the right format of researchStudyName</description>
+        <developerName>instruction_1_1759724179745</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_1_1759724179745</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>When receiving a user request to identify the sites for a Research Study and CRO, always invoke the &apos;Publish CRO Research Events&apos; agent action with two parameters:
+researchStudyName 
+croName 
+
+For example:
+If the user says: &quot;For the Research Study: Pelabresib (CPI-0610) for Myelofibrosis and CRO: Lirik CRO1, identify the sites that are eligible to run the clinical drug trial.&quot;
+Pass the values as:
+
+researchStudyName = &quot;Pelabresib (CPI-0610) for Myelofibrosis&quot;
+
+croName = &quot;Lirik CRO1&quot;
+
+Maintaining this format ensures accurate lookup, creation (if necessary), and event publishing.</description>
+        <developerName>instruction_2_1759724179745</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_2_1759724179745</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Process Research Study</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to help customer identify eligible sites for a research study and give him information about the status of the study</scope>
+</GenAiPlugin>
