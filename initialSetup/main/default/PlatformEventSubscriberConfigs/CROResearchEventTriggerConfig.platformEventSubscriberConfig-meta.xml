@@ -5,5 +5,5 @@
     <numPartitions>1</numPartitions>
     <partitionKey>EventUuid</partitionKey>
     <platformEventConsumer>CROResearchEventTrigger</platformEventConsumer>
-    <user>captain@lirik.io.devpro</user>
+    <user>captain@lirik.io.devpro2</user>
 </PlatformEventSubscriberConfig>

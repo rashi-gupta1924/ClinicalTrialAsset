@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <!--types> 
+    <types> 
         <members>Publish_Patient_Eligibility_Event</members>
         <members>Publish_PCP_Patient_Eligibility_Event</members>
         <members>Publish_CRO_Research_Events</members>
@@ -40,7 +40,7 @@
         <members>Agent_Orchestrator_Flow</members>
         <members>Task_Triggered_Flow</members>
         <name>Flow</name>
-    </types-->
+    </types>
     <types>
         <name>PlatformEventSubscriberConfig</name>
         <members>CROResearchEventTriggerConfig</members>
