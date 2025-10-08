@@ -41,11 +41,5 @@
         <members>Task_Triggered_Flow</members>
         <name>Flow</name>
     </types>
-    <types>
-        <name>PlatformEventSubscriberConfig</name>
-        <members>CROResearchEventTriggerConfig</members>
-        <members>PatientEligibilityEventTriggerConfig</members>
-        <members>PreferenceScoreTriggerConfig</members>
-    </types>
     <version>64.0</version>
 </Package>
