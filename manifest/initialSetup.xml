@@ -91,6 +91,7 @@
         <members>Account.Agreement_to_Remain_Abstinent__c</members>
         <members>Account.Laser_eye_treatment_history__c</members>
         <members>Account.Masked_Name__c</members>
+        <members>Account.Patient_Age__c</members>
 		<members>HealthcareFacility.Ethics_Committee_Present__c</members>
         <members>HealthcareFacility.Lab_Facility_Available__c</members>
         <members>HealthcareFacility.Drug_Storage_Facility_Available__c</members>
