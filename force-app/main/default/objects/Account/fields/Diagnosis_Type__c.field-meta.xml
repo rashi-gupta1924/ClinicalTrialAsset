@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Diagnosis_Type__c</fullName>
+    <label>Diagnosis Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Primary Myelofibrosis</fullName>
+                <default>false</default>
+                <label>Primary Myelofibrosis</label>
+            </value>
+            <value>
+                <fullName>Post-PV MF</fullName>
+                <default>false</default>
+                <label>Post-PV MF</label>
+            </value>
+            <value>
+                <fullName>Post-ET MF</fullName>
+                <default>false</default>
+                <label>Post-ET MF</label>
+            </value>
+            <value>
+                <fullName>Macular edema with non-infectious uveitis</fullName>
+                <default>false</default>
+                <label>Macular edema with non-infectious uveitis</label>
+            </value>
+            <value>
+                <fullName>Macular edema secondary to non-infectious uveitis</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Macular edema secondary to non-infectious uveitis</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
